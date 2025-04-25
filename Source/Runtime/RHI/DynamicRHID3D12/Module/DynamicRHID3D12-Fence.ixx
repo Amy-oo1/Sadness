@@ -29,7 +29,7 @@ import :Descriptor;
 export class FenceCore final : public MoveAbleOnly, public DeviceChild {
 	friend class FenceCorePool;
 	friend class FenceIncrement;
-	friend class FenceManua;
+	friend class FenceManual;
 	friend class FenceCommandList;
 public:
 	FenceCore(Device* Parent, Uint64 InitalValue) :
@@ -77,14 +77,14 @@ public:
 	{}
 
 	~FenceCorePool(void) {
-			while (!this->m_FenceCorePool.Is_Empty())
-				delete this->m_FenceCorePool.DeQueue().value();
+			while (!this->m_AvailableFences.Is_Empty())
+				delete this->m_AvailableFences.DeQueue().value();
 	}
 
 public:
 	FenceCore* Get_FenceCore(void) {
-		if (!this->m_FenceCorePool.Is_Empty() && this->m_FenceCorePool.Peek().value()->Is_FenceValueAvailable())
-			return this->m_FenceCorePool.DeQueue().value();
+		if (!this->m_AvailableFences.Is_Empty() && this->m_AvailableFences.Peek().value()->Is_FenceValueAvailable())
+			return this->m_AvailableFences.DeQueue().value();
 
 		return new FenceCore { this->m_Device, 0};
 	}
@@ -92,12 +92,12 @@ public:
 	void ReleaseFenceCore(FenceCore* InFenceCore,Uint64 CurrentFenceValue) {
 
 		InFenceCore->m_FenceValueAvailableAt= CurrentFenceValue;
-		this->m_FenceCorePool.EnQueue(InFenceCore);
+		this->m_AvailableFences.EnQueue(InFenceCore);
 	}
 
 private:
 	//NOTE : Use Defual Allocator
-	Queue_SPMC<FenceCore*> m_FenceCorePool {};
+	Queue_SPMC<FenceCore*> m_AvailableFences {};
 
 };
 
@@ -110,8 +110,9 @@ public:
 		DeviceChild { Parent }
 	{}
 
-	void CreateFence(void) {
-		this->Get_Derived()->Imp_CreateFence();
+	//TODO : =0 Or Base 
+	void DeferredInitializate(void) {
+		this->Get_Derived()->Imp_DeferredInitializate();
 	}
 
 	[[nodiscard]] Uint64 Get_CurrentFence(void) {
@@ -148,9 +149,16 @@ public:
 
 protected:
 
-	
 
-	
+protected:
+
+	void Get_FenceCore(void) {
+		if (this->m_FenceCore)
+			return;
+
+		this->m_FenceCore = this->m_Device->Get_FenceCorePool()->Get_FenceCore();
+	}
+
 
 protected:
 	Uint64 m_CurrentFenceValue { 0 };
@@ -162,11 +170,14 @@ protected:
 private:
 	Derived* Get_Derived(void) { return static_cast<Derived*>(this); }
 
-protected:
+
+
+
+private:
 	//NOTE :this Func To Debug
 
-	void Imp_CreateFence(void) {
-		LOG_ERROR("FenceBase::Imp_CreateFence() not implemented");
+	void Imp_DeferredInitializate(void) {
+		LOG_ERROR("FenceBase::Imp_DeferredInitializate() not implemented");
 	}
 
 	Uint64 Imp_Get_CurrentFence(void) {
@@ -187,13 +198,13 @@ export class FenceIncrement final : public FenceBase<FenceIncrement> {
 	friend class FenceBase<FenceIncrement>;
 public:
 	FenceIncrement(Device* Parent) :
-		FenceBase { Parent }
+		FenceBase<FenceIncrement> { Parent }
 	{}
 
 
 private:
-	void Imp_CreateFence(void) {
-		this->m_FenceCore = this->m_Device->Get_FenceCorePool()->Get_FenceCore();
+	void Imp_DeferredInitializate(void) {
+		this->Get_FenceCore();
 
 		this->m_LastSignaledFenceVaule = 0;
 		this->m_LastCompletedFenceValue = this->m_FenceCore->m_FenceValueAvailableAt;
@@ -210,23 +221,24 @@ private:
 	}
 };
 
-export class FenceManua final : public FenceBase<FenceManua> {
-	friend class FenceBase<FenceManua>;
+export class FenceManual final : public FenceBase<FenceManual> {
+	friend class FenceBase<FenceManual>;
 public:
-	FenceManua(Device* Parent) :
-		FenceBase { Parent }
+	FenceManual(Device* Parent) :
+		FenceBase<FenceManual> { Parent }
 	{}
 
 
 private:
-	//TDO :IMPI
-	void Imp_CreateFence(void) {
-		this->m_FenceCore = this->m_Device->Get_FenceCorePool()->Get_FenceCore();
-		this->m_LastSignaledFenceVaule = 0;
+	//TODO :IMPI
+	void Imp_DeferredInitializate(void) {
+		this->Get_FenceCore();
 
+		this->m_LastSignaledFenceVaule = 0;
 		this->m_LastCompletedFenceValue = this->m_FenceCore->m_FenceValueAvailableAt;
 		this->m_CurrentFenceValue = this->m_LastCompletedFenceValue + 1;
 	}
+
 	Uint64 Imp_Get_CurrentFence(void) { return this->m_CurrentFenceValue; }
 
 	Uint64 Imp_Signal(D3D12_COMMAND_LIST_TYPE InQueueType) {
@@ -245,7 +257,7 @@ public:
 
 private:
 	//TDO :IMPI
-	void Imp_CreateFence(void) {
+	void Imp_DeferredInitializate(void) {
 		this->m_FenceCore = this->m_Device->Get_FenceCorePool()->Get_FenceCore();
 		this->m_LastSignaledFenceVaule = 0;
 

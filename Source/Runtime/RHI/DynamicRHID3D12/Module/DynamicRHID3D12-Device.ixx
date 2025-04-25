@@ -70,6 +70,21 @@ public:
 
 	D3D12_RESOURCE_BINDING_TIER Get_ResourceBindingTier(void) { return D3D12_RESOURCE_BINDING_TIER_1; }//TODO :
 
+
+private:
+	//TODO :not all type can not in auto ptr ,unless you make a delete ,typpe is too much,use new delete
+	void InitializatiePartFencePool(void);
+
+	void DestroyPartFencePool(void);
+
+	void InitializatiePartFence(void);
+
+	void DestroyPartFence(void);
+
+	void InitializatiePartGPUNode(void);
+
+	void DestroyPartGPUNode(void);
+
 private:
 	ComPtr<IDXGIAdapter2> m_Adapter2;
 	ComPtr<ID3D12Device4> m_Device4 { nullptr };

@@ -20,7 +20,7 @@ import DynamicRHI;
 
 import D3D12Definition;
 
-import :Forward;
+//import :Forward;
 import :Common;
 import :Device;
 import :Descriptor;
@@ -30,6 +30,38 @@ import :GPUNode;
 import :SamplerManager;
 import :TextureManager;
 
+void Device::InitializatiePartFencePool(void){
+	this->m_FenceCorePool = new FenceCorePool { this };
+}
+
+void Device::DestroyPartFencePool(void){
+	if (this->m_FenceCorePool) {
+		delete this->m_FenceCorePool;
+		this->m_FenceCorePool = nullptr;
+	}
+}
+
+void Device::InitializatiePartFence(void){
+	this->m_FrameFence = new FenceManual { this };
+}
+
+void Device::DestroyPartFence(void){
+	if (this->m_FrameFence) {
+		delete this->m_FrameFence;
+		this->m_FrameFence = nullptr;
+	}
+}
+
+void Device::InitializatiePartGPUNode(void){
+	for (Uint32 Index = 0; auto & EachGPUNode : this->m_GPUNodes)
+		EachGPUNode = new  GPUNode { this, RHIGPUMask { Index++ } };
+}
+
+void Device::DestroyPartGPUNode(void){
+	for (auto& EachGPUNode : this->m_GPUNodes)
+		delete EachGPUNode;
+}
+
 
 Device::Device(ComPtr<IDXGIAdapter2> adapter):
 	MoveAbleOnly {},
@@ -37,8 +69,9 @@ Device::Device(ComPtr<IDXGIAdapter2> adapter):
 
 	D3D12_CHECK(D3D12CreateDevice(this->m_Adapter2.Get(), g_MinFeatureLevelSupport, IID_PPV_ARGS(&this->m_Device4)));
 
-	for (Uint32 Index = 0; auto & EachGPUNode : this->m_GPUNodes)
-		EachGPUNode = new  GPUNode { this, RHIGPUMask { Index++ } };
+	this->InitializatiePartFencePool();
+	this->InitializatiePartFence();
+	this->InitializatiePartGPUNode();
 }
 
 
@@ -80,10 +113,11 @@ ID3D12Resource* TextureManager::CreateGPUResource(const Uint8* Data,Size size, c
 	return Re;
 }
 
-Device::~Device(void){
-	for (auto& EachGPUNode : this->m_GPUNodes) {
-		delete EachGPUNode;
-	}
+Device::~Device(void) {
+	this->DestroyPartGPUNode();
+	this->DestroyPartFence();
+	this->DestroyPartFencePool();
+	
 
 	//TODO : Remove
 	this->m_Adapter2.Reset();

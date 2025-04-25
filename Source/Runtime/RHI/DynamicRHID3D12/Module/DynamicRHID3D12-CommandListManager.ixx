@@ -38,7 +38,7 @@ public:
 		SingleNodeGPUObject { GPUIndex },
 		m_Fence { new FenceCommandList{Parent} } {
 
-		this->m_Fence->CreateFence();
+		this->m_Fence->DeferredInitializate();
 
 		D3D12_COMMAND_QUEUE_DESC QueueDesc {
 			.Type = CommandType,

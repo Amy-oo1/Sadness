@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DynamicRHI">
+      <UniqueIdentifier>{50a9e571-9082-4c99-a58e-49f8db26bc5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicRHI\Include">
+      <UniqueIdentifier>{4e804ef2-b747-4130-9621-d3a3db0be7d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicRHI\Module">
+      <UniqueIdentifier>{d2a86117-b1c4-42fc-9f86-e0ec3735267f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicRHI\Src">
+      <UniqueIdentifier>{deb4309f-297d-4be2-acb2-12da48eab412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicRHID3D12">
+      <UniqueIdentifier>{727cd4fb-0011-4b77-8995-e5f6ce514a5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicRHID3D12\Module">
+      <UniqueIdentifier>{1339fb6e-33b0-43f4-bfd7-a5a33fe639bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicRHID3D12\Include">
+      <UniqueIdentifier>{6d724d60-666e-44b3-aa43-817b424df7fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RHI">
+      <UniqueIdentifier>{c4a98be6-3a02-4285-a9ba-7e69234ec128}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RHI\Include">
+      <UniqueIdentifier>{f4496594-2b2c-44fa-b868-46acc82d02e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RHI\Module">
+      <UniqueIdentifier>{12474f18-9855-489b-b759-a9c4510e4b40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RHI\Src">
+      <UniqueIdentifier>{df6bb1c3-13d5-45a1-b4b3-7204c95a10cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{e375c5a0-feab-429f-9f02-1c363e6322aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicRHID3D12\Src">
+      <UniqueIdentifier>{f65f845a-c1c8-4d5c-8c29-722ae0352b13}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHI\Module\DynamicRHI.ixx">
+      <Filter>DynamicRHI\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-GPUNode.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Forward.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\D3D12Definition.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\RHI\Module\RHI.ixx">
+      <Filter>RHI\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\RHI\Module\RHI-Resource.ixx">
+      <Filter>RHI\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\RHI\Module\RHI-MultiGPU.ixx">
+      <Filter>RHI\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Common.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Fence.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Implementation.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-TextureManager.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\RHI\Module\RHI-SamplerDesc.ixx">
+      <Filter>RHI\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Device.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\RHI\Module\RHI-Platform.ixx">
+      <Filter>RHI\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Descriptor.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-SamplerManager.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-RootSignatureManager.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHI\Module\DynamicRHI-Resource.ixx">
+      <Filter>DynamicRHI\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-PipelineState.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ThirdParty\Windows\DDS\DDSTextureLoader12.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-CommandListManager.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Resource.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-CommandList.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Include\D3D12APIWrapper.h">
+      <Filter>DynamicRHID3D12\Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

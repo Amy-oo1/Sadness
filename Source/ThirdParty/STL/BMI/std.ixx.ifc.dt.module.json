@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\std.obj",
+            "outputs": [
+                "x64\\Debug\\std.ixx.ifc.dt.module.json",
+                "x64\\Debug\\std.ixx.ifc.dt.d.json",
+                "x64\\Debug\\std.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "std",
+                    "source-path": "d:\\amy_4\\test\\first_test\\std.ixx",
+                    "is-interface": true
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

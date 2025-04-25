@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ApplicationContext">
+      <UniqueIdentifier>{3e976e1d-41fd-4908-81d5-184f79c1e7a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ApplicationContext\Include">
+      <UniqueIdentifier>{481dccd2-eebd-4f28-9b91-30ae23f75cea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ApplicationContext\Module">
+      <UniqueIdentifier>{a19aa91a-678b-4d27-bf72-8c224079450e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ApplicationContext\Src">
+      <UniqueIdentifier>{06043b8d-6985-4cd9-83be-5be320928473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{6af8d49f-fa02-40fc-9b46-a7ac7aded207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Include">
+      <UniqueIdentifier>{a2f609ec-d0b3-4563-89a1-4a8c13522fa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Src">
+      <UniqueIdentifier>{8b158bda-8124-4d65-bdd8-c8e66174d895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Module">
+      <UniqueIdentifier>{956ee403-8a5f-4558-83e4-8af72405c440}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configer">
+      <UniqueIdentifier>{0fd56df0-bcb6-492c-bb67-f70b7ac60826}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configer\Include">
+      <UniqueIdentifier>{ab1c800a-38dc-4280-9747-31953a5b4a10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configer\Module">
+      <UniqueIdentifier>{469bc778-5b5b-4f50-bfc6-54e861c34015}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configer\Src">
+      <UniqueIdentifier>{cdf11b3c-ce98-47c1-b6e7-b0ee147975ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Root">
+      <UniqueIdentifier>{82d85515-deb7-47b4-a050-1efacbdaccc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Root\Include">
+      <UniqueIdentifier>{b50cfe8d-75f7-458f-a713-9b589e4ca1e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Root\Module">
+      <UniqueIdentifier>{c11773fe-7350-4205-acca-9d6f28b4f1af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Root\Src">
+      <UniqueIdentifier>{9745e19b-a918-453b-95e4-1a57b668a9e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launch">
+      <UniqueIdentifier>{69069299-85f8-4cef-acd4-538e839055df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launch\Include">
+      <UniqueIdentifier>{e071d84d-2b76-4d60-8e59-8574179fd26e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launch\Module">
+      <UniqueIdentifier>{3c166e40-141f-4d6b-a197-a5412810307d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Launch\Src">
+      <UniqueIdentifier>{500946a1-3b8f-42fd-b5e3-c6d4bc426381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{8923412e-07c9-4d4f-b1b7-c26db55a45dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Include">
+      <UniqueIdentifier>{41193d72-cab5-4a8a-bf4b-03372f2af6b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Module">
+      <UniqueIdentifier>{938abd31-de7e-485d-9f44-bd3d51d4b00a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global\Src">
+      <UniqueIdentifier>{c8abaf57-e93f-4ca2-aebd-985581c2216f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Runtime\Engine\ApplicationContext\Module\ApplicationContext.ixx">
+      <Filter>ApplicationContext\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\ApplicationContext\Module\ApplicationContext-ApplicationContextBase.ixx">
+      <Filter>ApplicationContext\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Configer\Module\Configer.ixx">
+      <Filter>Configer\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Root\Module\Root.ixx">
+      <Filter>Root\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Window\Module\Window.ixx">
+      <Filter>Window\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Launch\Module\Launch.ixx">
+      <Filter>Launch\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Launch\Module\Launch-Universal.ixx">
+      <Filter>Launch\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Launch\Module\Launch-Windows.ixx">
+      <Filter>Launch\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Global\Module\Global.ixx">
+      <Filter>Global\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\ApplicationContext\Module\ApplicationContext-Windows.ixx">
+      <Filter>ApplicationContext\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Window\Module\Window-Windows.ixx">
+      <Filter>Window\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Window\Module\Window-Base.ixx">
+      <Filter>Window\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Root\Module\Root-Base.ixx">
+      <Filter>Root\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Root\Module\Root-Windows.ixx">
+      <Filter>Root\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Root\Module\Root-Forward.ixx">
+      <Filter>Root\Module</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\Runtime\Engine\Configer\Include\ConfigMacros.h">
+      <Filter>Configer\Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

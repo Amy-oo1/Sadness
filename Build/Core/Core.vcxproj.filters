@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Logger">
+      <UniqueIdentifier>{9cc6dcea-42f3-423b-a7f9-2db1f135c363}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logger\Src">
+      <UniqueIdentifier>{3d2764a4-893a-41a5-9e08-c1b754f86649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logger\Include">
+      <UniqueIdentifier>{5b8c204e-d3e2-4227-9c0e-0b8c4bb30d28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{f2ebd91b-2ff3-4222-bb3d-e284d2c2d5ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Include">
+      <UniqueIdentifier>{3c403442-9ace-46a8-9696-4c6a29fd2b07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Src">
+      <UniqueIdentifier>{17628c0f-d8f1-40eb-b917-b7f489ff63a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{18a86682-f535-4ba9-9ad8-d3226bf8bf82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Include">
+      <UniqueIdentifier>{68726df7-38c6-4593-9d04-f610dd0bc91e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Module">
+      <UniqueIdentifier>{700eb162-34a3-4408-914d-bea6ae6bd920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logger\Module">
+      <UniqueIdentifier>{83dafec8-fc2e-4f88-879c-be5b57cd011a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Module">
+      <UniqueIdentifier>{f0274921-0bd2-4371-8b73-5ae18a3b8865}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility\Src">
+      <UniqueIdentifier>{26f2aef4-0ba0-42be-9d53-9dd384ccf966}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{011b9d92-234d-44c8-8a41-e55ed3dfeea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Include">
+      <UniqueIdentifier>{30348b69-b009-4ec8-9a2c-7028b3df00bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Module">
+      <UniqueIdentifier>{9bcfdf6c-01e5-4d53-b4bc-c1a4cf9640c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Src">
+      <UniqueIdentifier>{499c4fc1-c705-4307-ab6c-981c242da115}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{cf6d052b-88d6-48cb-aa5b-fbe3b17b2716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory\Include">
+      <UniqueIdentifier>{114ef36f-1998-4a08-bdd6-0211ec3f012b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory\Module">
+      <UniqueIdentifier>{d6fd91a8-daf6-414d-b312-42b3016eb148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory\Src">
+      <UniqueIdentifier>{bfcae1bb-37cf-450c-9cb0-80a8d5c96339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String">
+      <UniqueIdentifier>{f766b0d3-0d37-45c2-a300-954c26d1fe80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String\Include">
+      <UniqueIdentifier>{f2d93203-0992-42a0-8068-a5117d465cf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String\Module">
+      <UniqueIdentifier>{89a0541e-4895-4df5-98e9-6f3a3dd222bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String\Src">
+      <UniqueIdentifier>{f84b5a20-dbc7-468e-8ec9-cd9d77480f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container">
+      <UniqueIdentifier>{0dac6aa6-9b78-4860-9271-d337c75a98fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container\Include">
+      <UniqueIdentifier>{f8857a4f-8729-435b-8d94-03382537e3fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container\Src">
+      <UniqueIdentifier>{177d2adb-3580-45a4-abf7-ab7dc2de8bf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container\Module">
+      <UniqueIdentifier>{186b6881-21b1-4b7b-b37d-c8a281ad196a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{2ad14af3-2011-4323-9622-7fa86b2c5f38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO\Include">
+      <UniqueIdentifier>{5c0a39c2-d821-41f4-96aa-20d421226328}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO\Module">
+      <UniqueIdentifier>{eff8e3cf-bebf-45ee-9020-e6da86022cb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO\Src">
+      <UniqueIdentifier>{d3b85aa5-25f4-497d-8d1a-2618fc80c4e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileSystemLayer">
+      <UniqueIdentifier>{fe94714b-23f1-4706-91f1-a55a2eff6fad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileSystemLayer\Include">
+      <UniqueIdentifier>{a8c40053-e8b0-48fa-a311-7c0fd1077827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileSystemLayer\Module">
+      <UniqueIdentifier>{c97323fd-3c17-4047-a3b2-8405038d4a0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileSystemLayer\Src">
+      <UniqueIdentifier>{3368f584-d3da-420a-b3df-ac6497ed6fb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Concurrent">
+      <UniqueIdentifier>{221b3adf-5740-41de-93ee-60b684b5e697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Concurrent\Include">
+      <UniqueIdentifier>{1795afdb-2263-4a63-8855-855f4b9d0f7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Concurrent\Module">
+      <UniqueIdentifier>{083a8e2d-0d80-4621-8dc9-f582c9d198ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Concurrent\Src">
+      <UniqueIdentifier>{234cca11-d78a-4916-aea7-70e2bf258918}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Color">
+      <UniqueIdentifier>{31514adc-3a1c-4baf-a51b-17d0c10845f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Color\Include">
+      <UniqueIdentifier>{91f5b6f1-704b-4372-8c71-761cbd41b5b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Color\Src">
+      <UniqueIdentifier>{c07f88ef-0656-4a43-816d-7ce8121f325d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Color\Module">
+      <UniqueIdentifier>{f34a2799-2d21-4e6b-81cd-d1a69f7f2094}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Runtime\Core\Logger\Module\Logger.ixx">
+      <Filter>Logger\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Platform\Module\Platform.ixx">
+      <Filter>Platform\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Platform\Module\Platform-File.ixx">
+      <Filter>Platform\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Platform\Module\Platform-Type.ixx">
+      <Filter>Platform\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Utility\Module\Utility.ixx">
+      <Filter>Utility\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Utility\Module\Utility-SemanticControl.ixx">
+      <Filter>Utility\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Common.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Utility\Module\Utility-Concept.ixx">
+      <Filter>Utility\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Scalar.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Utility\Module\Utility-Function.ixx">
+      <Filter>Utility\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Forward.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Implementation.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Vector2.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Vector3.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Vector4.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-BoolVector.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Matrix3x3.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Matrix4x4.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Quaternion.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Function.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Memory\Module\Memory-Tracker.ixx">
+      <Filter>Memory\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Memory\Module\Memory.ixx">
+      <Filter>Memory\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\String\Module\String.ixx">
+      <Filter>String\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\String\Module\String-u8String.ixx">
+      <Filter>String\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\String\Module\String-u16String.ixx">
+      <Filter>String\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\String\Module\String-u32String.ixx">
+      <Filter>String\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Container\Module\Container.ixx">
+      <Filter>Container\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Container\Module\Container-Vector.ixx">
+      <Filter>Container\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\IO\Module\SyncIO-Console.ixx">
+      <Filter>IO\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\IO\Module\SyncIO.ixx">
+      <Filter>IO\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\String\Module\String-ANSIString.ixx">
+      <Filter>String\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\String\Module\String-TString.ixx">
+      <Filter>String\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Platform\Module\Platform-Windows.ixx">
+      <Filter>Platform\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Utility\Module\Utility-Exception.ixx">
+      <Filter>Utility\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\String\Module\String-Wstring.ixx">
+      <Filter>String\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\FileSystemLayer\Module\FileSystemLayer.ixx">
+      <Filter>FileSystemLayer\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Container\Module\Container-Array.ixx">
+      <Filter>Container\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Container\Module\Container-SmartPointer.ixx">
+      <Filter>Container\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Container\Module\Container-BitSet.ixx">
+      <Filter>Container\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="Container-Queue.ixx">
+      <Filter>Container\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Concurrent\Module\Concurrent.ixx">
+      <Filter>Concurrent\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Concurrent\Module\Concurrent-Atomic.ixx">
+      <Filter>Concurrent\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Memory\Module\Memory-Alloctor.ixx">
+      <Filter>Memory\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Container\Module\Container-Optional.ixx">
+      <Filter>Container\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Color\Module\Color.ixx">
+      <Filter>Color\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Container\Module\Container-Map.ixx">
+      <Filter>Container\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Container\Module\Container-Hash.ixx">
+      <Filter>Container\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Concurrent\Module\Concurrent-Mutex.ixx">
+      <Filter>Concurrent\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Utility\Module\Utility-Functional.ixx">
+      <Filter>Utility\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Concurrent\Module\Concurrent-Thread.ixx">
+      <Filter>Concurrent\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Container\Module\Container-Tuple.ixx">
+      <Filter>Container\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Concurrent\Module\Concurrent-Container.ixx">
+      <Filter>Concurrent\Module</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\Runtime\Core\Platform\Include\PlatformMacros.h">
+      <Filter>Platform\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Runtime\Core\Logger\Include\LogMacros.h">
+      <Filter>Logger\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Runtime\Core\Utility\Include\UtilityMacros.h">
+      <Filter>Utility\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Runtime\Core\String\Include\StringMacros.h">
+      <Filter>String\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Runtime\Core\Platform\Include\PlatformWindowsWrapper.h">
+      <Filter>Platform\Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

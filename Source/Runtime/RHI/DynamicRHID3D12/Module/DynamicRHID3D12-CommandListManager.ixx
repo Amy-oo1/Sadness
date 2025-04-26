@@ -36,9 +36,9 @@ public:
 		MoveAbleOnly {},
 		DeviceChild { Parent },
 		SingleNodeGPUObject { GPUIndex },
-		m_Fence { MakeShared<FenceCommandList>(Parent) } {
+		m_Fence { Parent } {
 
-		this->m_Fence->DeferredInitializate();
+		this->m_Fence.DeferredInitializate();
 
 		D3D12_COMMAND_QUEUE_DESC QueueDesc {
 			.Type = CommandType,
@@ -79,7 +79,7 @@ private:
 	D3D12_COMMAND_LIST_TYPE m_Type;
 	ComPtr<ID3D12CommandQueue> m_Queue { nullptr };
 
-	SharedPtr<FenceBase<FenceCommandList>> m_Fence;
+	FenceCommandList m_Fence;
 
 	Queue_ThreadSafe<SharedPtr<CommandList>> m_ReadyLists {};
 

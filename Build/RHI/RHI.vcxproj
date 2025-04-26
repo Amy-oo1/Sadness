@@ -147,6 +147,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-CommandContext.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-CommandList.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-CommandListManager.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Descriptor.ixx" />
@@ -166,6 +167,7 @@
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-TextureManager.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-SamplerManager.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12.ixx" />
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHI\Module\DynamicRHI-CommandContext.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHI\Module\DynamicRHI-Resource.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHI\Module\DynamicRHI.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\RHI\Module\RHI-Resource.ixx" />

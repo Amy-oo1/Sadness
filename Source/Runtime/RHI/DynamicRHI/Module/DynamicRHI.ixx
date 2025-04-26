@@ -10,6 +10,7 @@ import Logger;
 import RHI;
 
 export import :Resource;
+export import :CommandContext;
 
 export template<typename Derived>
 class DynamicRHI :public Singleton {
@@ -55,7 +56,5 @@ private:
 	void Impl_RHICreateSamplerState(const RHISamplerDesc& Desc) {
 		LOG_INFO("DynamicRHI::Impl_RHICreateSamplerState()");
 	}
-
-
 
 };

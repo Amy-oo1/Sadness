@@ -30,6 +30,7 @@ export import :CommandList;
 export import :CommandListManager;
 export import :SamplerManager;
 export import :TextureManager;
+export import :CommandContext;
 export import :Implementation;
 
 
@@ -69,7 +70,7 @@ private:
 private:
 	
 
-public:
+private:
 	void Imp_RHIPerInitialize(void);
 
 	void Imp_RHIPostInitialize(void);

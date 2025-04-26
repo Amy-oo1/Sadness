@@ -104,7 +104,7 @@ private:
 // TODO : base fun is empty ,mybe can has shared part
 export template<typename Derived>
 class FenceBase : public MoveAbleOnly, public DeviceChild {
-protected:
+protected://NOTE : Virtual Base Class
 	FenceBase(Device* Parent):
 		MoveAbleOnly {},
 		DeviceChild { Parent }
@@ -119,20 +119,6 @@ public:
 	}
 
 public:
-
-	//TODO : =0 Or Base 
-	void DeferredInitializate(void) {
-		this->Get_Derived()->Imp_DeferredInitializate();
-	}
-
-	[[nodiscard]] Uint64 Get_CurrentFence(void) {
-		this->Get_Derived()->Imp_Get_CurrentFence();
-	}
-
-	[[nodiscard]] Uint64 Signal(D3D12_COMMAND_LIST_TYPE InQueueType) {
-		this->Get_Derived()->Imp_Signal();
-	}
-
 	[[nodiscard]] bool Is_FenceComplete(Uint64 FenceValue) {
 		if (FenceValue <= this->m_LastCompletedFenceValue)
 			return true;
@@ -155,11 +141,25 @@ public:
 		);
 	}
 
-protected:
+public:
+	//TODO : =0 Or Base 
+	void DeferredInitializate(void) {
+		this->Get_Derived()->Imp_DeferredInitializate();
+	}
+
+	[[nodiscard]] Uint64 Get_CurrentFence(void) {
+		this->Get_Derived()->Imp_Get_CurrentFence();
+	}
+
+	[[nodiscard]] Uint64 Signal(D3D12_COMMAND_LIST_TYPE InQueueType) {
+		this->Get_Derived()->Imp_Signal();
+	}
 
 
 protected:
 
+
+protected:
 	void Get_FenceCore(void) {
 		if (this->m_FenceCore)
 			return;
@@ -272,6 +272,7 @@ private:
 		this->m_LastCompletedFenceValue = this->m_FenceCore->m_FenceValueAvailableAt;
 		this->m_CurrentFenceValue = this->m_LastCompletedFenceValue + 1;
 	}
+
 	Uint64 Imp_Get_CurrentFence(void) { return this->m_CurrentFenceValue; }
 
 	Uint64 Imp_Signal(D3D12_COMMAND_LIST_TYPE InCommandType) {
@@ -286,7 +287,7 @@ export template<typename FenceType>
 class SyncPoint final {
 	TRIVIAL_FUNCTION(SyncPoint<FenceType>)
 public:
-	/*explicit*/ SyncPoint(FenceBase<FenceType>* Fence):
+	/*explicit*/ SyncPoint(FenceType* Fence):
 		m_Fence { Fence },
 		m_Value { Fence->UpdateCompletedFenceValue()}
 	{}
@@ -301,7 +302,7 @@ public:
 	}
 
 private:
-	FenceBase<FenceType>* m_Fence { nullptr };//TODO Remove It
+	FenceType* m_Fence { nullptr };//TODO Remove It
 	Uint64 m_Value;
 };
 

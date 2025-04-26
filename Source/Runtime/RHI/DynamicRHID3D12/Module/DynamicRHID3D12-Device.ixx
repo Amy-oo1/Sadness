@@ -60,7 +60,7 @@ public:
 
 	FenceCorePool* Get_FenceCorePool(void) { return this->m_FenceCorePool; }
 
-	FenceBase<FenceManual>* Get_FrameFence(void) {
+	FenceManual* Get_FrameFence(void) {
 		return this->m_FrameFence;
 	}
 
@@ -97,8 +97,8 @@ private:
 	Array<GPUNode*, g_MaxGPUCount> m_GPUNodes {};
 
 	FenceCorePool* m_FenceCorePool { nullptr };
-	FenceBase<FenceIncrement>* m_StagingFence { nullptr };
-	FenceBase<FenceManual>* m_FrameFence { nullptr };
+	FenceIncrement* m_StagingFence { nullptr };
+	FenceManual* m_FrameFence { nullptr };
 
 	D3D12_HEAP_PROPERTIES m_ConstantBufferPageProperties {};//TODO ?
 

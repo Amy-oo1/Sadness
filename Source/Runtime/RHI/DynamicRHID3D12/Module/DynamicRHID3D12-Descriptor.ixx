@@ -164,7 +164,7 @@ protected:
 public:
 	virtual ~DescriptorHeapBase(void) = default;
 
-protected:
+public:
 	bool HasAvailableSpace(Uint32 Count) { return this->m_FreeDescriptorCount <= Count; }
 
 	bool Is_ValidateHandle(const DescriptorHandle<DescriptorHeapType>& DHandle) {

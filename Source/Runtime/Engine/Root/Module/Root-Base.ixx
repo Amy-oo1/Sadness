@@ -27,7 +27,7 @@ struct WindowTraits<class RootWin> {
 };
 
 
-
+//NOTE : in CRTF ,you do not nedd a ptr to use base clas func or field , here to giva a tips a type about such au window ,rhi
 export template<typename Derived>
 class RootBase :public Singleton {
 	using WindowType = typename WindowTraits<Derived>::WindowType;

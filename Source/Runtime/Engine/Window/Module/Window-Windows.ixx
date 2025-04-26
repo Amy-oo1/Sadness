@@ -64,10 +64,8 @@ public:
 private:
 	HWND m_Hand{ nullptr };
 
-
 	static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
 		return DefWindowProcW(hwnd, uMsg, wParam, lParam);
 	}
-
 };

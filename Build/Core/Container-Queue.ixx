@@ -70,6 +70,7 @@ public:
 
 		for (;;) {
 			Current = m_Head.load(MemoryOrderAcquire);
+			Next = Current->Next.load(MemoryOrderAcquire);
 
 			if (nullptr==Current)
 				return NullOpt;
@@ -80,7 +81,7 @@ public:
 				break;
 		}
 
-		auto Resource{ MoveTemp(Next->Data) };
+		auto Resource{ Next->Data };
 		this->m_Alloctor.delete_object(Current);
 
 		return Resource;

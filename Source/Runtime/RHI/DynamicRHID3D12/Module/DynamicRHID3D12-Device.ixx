@@ -66,34 +66,41 @@ public:
 
 	const RHIGPUMask Get_ALLNode()const { return RHIGPUMask::All(); }
 
-	const D3D_ROOT_SIGNATURE_VERSION Get_RootSignatureVersion(void) { return D3D_ROOT_SIGNATURE_VERSION_1_1; }
+	const D3D_ROOT_SIGNATURE_VERSION Get_RootSignatureVersion(void) { return g_RootSignatureVersion; }//TODO
 
 	D3D12_RESOURCE_BINDING_TIER Get_ResourceBindingTier(void) { return D3D12_RESOURCE_BINDING_TIER_1; }//TODO :
 
 
 private:
 	//TODO :not all type can not in auto ptr ,unless you make a delete ,typpe is too much,use new delete
-	void InitializatiePartFencePool(void);
+	void InitializatiePartGPUNode(void);
 
-	void DestroyPartFencePool(void);
+	void DestroyPartGPUNode(void);
 
 	void InitializatiePartFence(void);
 
 	void DestroyPartFence(void);
 
-	void InitializatiePartGPUNode(void);
+	void InitializatiePartCommandListManager(void);
 
-	void DestroyPartGPUNode(void);
+	void DestroyPartCommandListManager(void);
 
 private:
 	ComPtr<IDXGIAdapter2> m_Adapter2;
 	ComPtr<ID3D12Device4> m_Device4 { nullptr };
+
+	ComPtr<ID3D12CommandSignature> m_DrawIndirectCommandSignature { nullptr };
+	ComPtr<ID3D12CommandSignature> m_DrawIndexedIndirectCommandSignature { nullptr };
+	ComPtr<ID3D12CommandSignature> m_DispatchIndirectCommandSignature { nullptr };
+
 private:
 	Array<GPUNode*, g_MaxGPUCount> m_GPUNodes {};
 
 	FenceCorePool* m_FenceCorePool { nullptr };
-
+	FenceBase<FenceIncrement>* m_StagingFence { nullptr };
 	FenceBase<FenceManual>* m_FrameFence { nullptr };
+
+	D3D12_HEAP_PROPERTIES m_ConstantBufferPageProperties {};//TODO ?
 
 private:
 	

@@ -25,16 +25,33 @@ public:
 	GPUNode(Device* Patrent,RHIGPUMask InGPUMask):
 		MoveAbleOnly {},
 		DeviceChild { Patrent },
-		SingleNodeGPUObject { InGPUMask }
+		SingleNodeGPUObject { InGPUMask },
+		m_GlobalSamerHeap { new GlobalSamplerHeap{this->m_Device, this->Get_GPUMask()} },
+		m_GlobalViewHeap { new GlobalViewHeap{this->m_Device, this->Get_GPUMask()} }
 	{}
 
 public:
-	~GPUNode(void) = default;
+	~GPUNode(void) {
+		delete this->m_GlobalSamerHeap;
+		delete this->m_GlobalViewHeap;
+	}
+
+	void InitializatiePartGPUNodeCommandListManager(void);
+
+	void DestroyPartGPUNodeCommandListManager(void);
 
 public:
+	//TODO Remove Defautl Init
 	DescriptorAllocator<D3D12_DESCRIPTOR_HEAP_TYPE_SAMPLER> m_SamplerAllocator { this->m_Device, this->Get_GPUMask() };
 	DescriptorAllocator<D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV> m_CBVSRVUAVAllocator { this->m_Device, this->Get_GPUMask() };
 	DescriptorAllocator<D3D12_DESCRIPTOR_HEAP_TYPE_RTV> m_RTVAllocator { this->m_Device, this->Get_GPUMask() };
 	DescriptorAllocator<D3D12_DESCRIPTOR_HEAP_TYPE_DSV> m_DSVAllocator { this->m_Device, this->Get_GPUMask() };
+
+	DescriptorHeapBase<GlobalSamplerHeap>* m_GlobalSamerHeap;
+	DescriptorHeapBase<GlobalViewHeap>* m_GlobalViewHeap;
+
+	CommandListManager* m_GraphicsCommandListManager { nullptr };
+	CommandListManager* m_ComputeCommandListManager { nullptr };
+	CommandListManager* m_CopyCommandListManager { nullptr };
 
 };

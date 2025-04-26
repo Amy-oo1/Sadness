@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-CommandList.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-CommandListManager.ixx" />
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Descriptor.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-PipelineState.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Resource.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-RootSignatureManager.ixx">
@@ -158,7 +159,6 @@
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\D3D12Definition.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-GPUNode.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Common.ixx" />
-    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Descriptor.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Device.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Fence.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Forward.ixx" />

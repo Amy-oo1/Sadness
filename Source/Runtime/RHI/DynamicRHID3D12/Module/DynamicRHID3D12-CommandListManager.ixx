@@ -36,7 +36,7 @@ public:
 		MoveAbleOnly {},
 		DeviceChild { Parent },
 		SingleNodeGPUObject { GPUIndex },
-		m_Fence { new FenceCommandList{Parent} } {
+		m_Fence { MakeShared<FenceCommandList>(Parent) } {
 
 		this->m_Fence->DeferredInitializate();
 

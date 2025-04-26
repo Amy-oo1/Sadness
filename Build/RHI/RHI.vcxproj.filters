@@ -87,9 +87,6 @@
     <ClCompile Include="..\..\Source\Runtime\RHI\RHI\Module\RHI-Platform.ixx">
       <Filter>RHI\Module</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Descriptor.ixx">
-      <Filter>DynamicRHID3D12\Module</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-SamplerManager.ixx">
       <Filter>DynamicRHID3D12\Module</Filter>
     </ClCompile>
@@ -112,6 +109,9 @@
       <Filter>DynamicRHID3D12\Module</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-CommandList.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Descriptor.ixx">
       <Filter>DynamicRHID3D12\Module</Filter>
     </ClCompile>
   </ItemGroup>

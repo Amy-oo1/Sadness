@@ -27,22 +27,43 @@ import :Descriptor;
 //import :Resource;
 import :Fence;
 import :GPUNode;
+import :RootSignatureManager;
+import :PipelineState;//TODO Cache?
+import :CommandList;
+import :CommandListManager;
 import :SamplerManager;
 import :TextureManager;
 
-void Device::InitializatiePartFencePool(void){
-	this->m_FenceCorePool = new FenceCorePool { this };
+
+
+void GPUNode::InitializatiePartGPUNodeCommandListManager(void){
+	this->m_GraphicsCommandListManager = new CommandListManager { this->m_Device, this->Get_GPUMask(), D3D12_COMMAND_LIST_TYPE::D3D12_COMMAND_LIST_TYPE_DIRECT };
+	this->m_ComputeCommandListManager = new CommandListManager { this->m_Device, this->Get_GPUMask(), D3D12_COMMAND_LIST_TYPE::D3D12_COMMAND_LIST_TYPE_COMPUTE };
+	this->m_CopyCommandListManager = new CommandListManager { this->m_Device, this->Get_GPUMask(), D3D12_COMMAND_LIST_TYPE::D3D12_COMMAND_LIST_TYPE_COPY };
 }
 
-void Device::DestroyPartFencePool(void){
-	if (this->m_FenceCorePool) {
-		delete this->m_FenceCorePool;
-		this->m_FenceCorePool = nullptr;
+void GPUNode::DestroyPartGPUNodeCommandListManager(void){
+	if (this->m_GraphicsCommandListManager) {
+		delete this->m_GraphicsCommandListManager;
+		this->m_GraphicsCommandListManager = nullptr;
+	}
+	if (this->m_ComputeCommandListManager) {
+		delete this->m_ComputeCommandListManager;
+		this->m_ComputeCommandListManager = nullptr;
+	}
+	if (this->m_CopyCommandListManager) {
+		delete this->m_CopyCommandListManager;
+		this->m_CopyCommandListManager = nullptr;
 	}
 }
 
+
+
+
 void Device::InitializatiePartFence(void){
+	this->m_FenceCorePool = new FenceCorePool { this };
 	this->m_FrameFence = new FenceManual { this };
+	this->m_StagingFence = new FenceIncrement { this };
 }
 
 void Device::DestroyPartFence(void){
@@ -50,11 +71,31 @@ void Device::DestroyPartFence(void){
 		delete this->m_FrameFence;
 		this->m_FrameFence = nullptr;
 	}
+
+	if (this->m_StagingFence) {
+		delete this->m_StagingFence;
+		this->m_StagingFence = nullptr;
+	}
+
+	if (this->m_FenceCorePool) {
+		delete this->m_FenceCorePool;
+		this->m_FenceCorePool = nullptr;
+	}
+}
+
+void Device::InitializatiePartCommandListManager(void){
+	for(auto& GPUNode :this->m_GPUNodes)
+		GPUNode->InitializatiePartGPUNodeCommandListManager();
+}
+
+void Device::DestroyPartCommandListManager(void){
+	for (auto& GPUNode : this->m_GPUNodes)
+		GPUNode->DestroyPartGPUNodeCommandListManager();
 }
 
 void Device::InitializatiePartGPUNode(void){
 	for (Uint32 Index = 0; auto & EachGPUNode : this->m_GPUNodes)
-		EachGPUNode = new  GPUNode { this, RHIGPUMask { Index++ } };
+		EachGPUNode = new  GPUNode { this, RHIGPUMask { 1u << (Index++)} };
 }
 
 void Device::DestroyPartGPUNode(void){
@@ -69,9 +110,44 @@ Device::Device(ComPtr<IDXGIAdapter2> adapter):
 
 	D3D12_CHECK(D3D12CreateDevice(this->m_Adapter2.Get(), g_MinFeatureLevelSupport, IID_PPV_ARGS(&this->m_Device4)));
 
-	this->InitializatiePartFencePool();
-	this->InitializatiePartFence();
+	D3D12_COMMAND_SIGNATURE_DESC commandSignatureDesc = {};
+	commandSignatureDesc.NumArgumentDescs = 1;
+	commandSignatureDesc.ByteStride = 20;
+	commandSignatureDesc.NodeMask = this->Get_ALLNode().Get_Native();
+
+	D3D12_INDIRECT_ARGUMENT_DESC indirectParameterDesc[1] = {};
+	commandSignatureDesc.pArgumentDescs = indirectParameterDesc;
+
+	indirectParameterDesc[0].Type = D3D12_INDIRECT_ARGUMENT_TYPE_DRAW;
+	commandSignatureDesc.ByteStride = sizeof(D3D12_DRAW_ARGUMENTS);
+
+	D3D12_CHECK(this->m_Device4->CreateCommandSignature(
+		&commandSignatureDesc,
+		nullptr,
+		IID_PPV_ARGS(&this->m_DrawIndirectCommandSignature)));
+
+	indirectParameterDesc[0].Type = D3D12_INDIRECT_ARGUMENT_TYPE_DRAW_INDEXED;
+	commandSignatureDesc.ByteStride = sizeof(D3D12_DRAW_INDEXED_ARGUMENTS);
+
+	D3D12_CHECK(this->m_Device4->CreateCommandSignature(
+		&commandSignatureDesc,
+		nullptr,
+		IID_PPV_ARGS(&this->m_DrawIndexedIndirectCommandSignature)));
+
+	indirectParameterDesc[0].Type = D3D12_INDIRECT_ARGUMENT_TYPE_DISPATCH;
+	commandSignatureDesc.ByteStride = sizeof(D3D12_DISPATCH_ARGUMENTS);
+
+	D3D12_CHECK(this->m_Device4->CreateCommandSignature(
+		&commandSignatureDesc,
+		nullptr,
+		IID_PPV_ARGS(&this->m_DispatchIndirectCommandSignature)));
+
 	this->InitializatiePartGPUNode();
+	this->InitializatiePartFence();
+	this->InitializatiePartCommandListManager();
+
+
+	this->m_ConstantBufferPageProperties = CD3DX12_HEAP_PROPERTIES(D3D12_HEAP_TYPE_UPLOAD);
 }
 
 
@@ -114,9 +190,9 @@ ID3D12Resource* TextureManager::CreateGPUResource(const Uint8* Data,Size size, c
 }
 
 Device::~Device(void) {
-	this->DestroyPartGPUNode();
+	this->DestroyPartCommandListManager();
 	this->DestroyPartFence();
-	this->DestroyPartFencePool();
+	this->DestroyPartGPUNode();
 	
 
 	//TODO : Remove

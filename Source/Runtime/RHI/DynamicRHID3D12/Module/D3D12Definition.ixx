@@ -11,7 +11,7 @@ export	constexpr D3D_FEATURE_LEVEL g_MinFeatureLevelSupport { D3D_FEATURE_LEVEL_
 export constexpr D3D_ROOT_SIGNATURE_VERSION g_RootSignatureVersion { D3D_ROOT_SIGNATURE_VERSION_1_1 };
 
 //SLI Nv max is 4
-export constexpr Uint32 g_MaxGPUCount { 4 };
+export constexpr Uint32 g_MaxGPUCount { 1 };
 
 
 export constexpr Uint32 g_ZeroBufferSize { 4 * (1 << 20) };
@@ -25,7 +25,7 @@ export constexpr Uint32 g_DefualtBindingSpace { 0 };
 export constexpr Uint32 g_MaxRootCBVCount { 16 };//NOTE :choose use Tanble Or 32Bit
 
 
-export enum ShaderVisibility :Uint8{//NOTE :SRV+CBV+UVA+Sampler
+export enum class ShaderVisibility :Uint8{//NOTE :SRV+CBV+UVA+Sampler
 	Vertex ,
 	Pixel ,
 	Hull ,

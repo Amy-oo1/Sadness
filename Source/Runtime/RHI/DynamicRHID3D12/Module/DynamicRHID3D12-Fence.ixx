@@ -104,11 +104,21 @@ private:
 // TODO : base fun is empty ,mybe can has shared part
 export template<typename Derived>
 class FenceBase : public MoveAbleOnly, public DeviceChild {
-public:
+protected:
 	FenceBase(Device* Parent):
 		MoveAbleOnly {},
 		DeviceChild { Parent }
 	{}
+
+public:
+	virtual ~FenceBase(void){
+		if(this->m_FenceCore) {
+			this->m_Device->Get_FenceCorePool()->ReleaseFenceCore(this->m_FenceCore, this->m_LastSignaledFenceVaule);
+			this->m_FenceCore = nullptr;
+		}
+	}
+
+public:
 
 	//TODO : =0 Or Base 
 	void DeferredInitializate(void) {
@@ -129,8 +139,6 @@ public:
 
 		return FenceValue <= this->UpdateCompletedFenceValue();
 	}
-
-	virtual ~FenceBase(void) = default;//TODO :
 
 	void WaitForFence(Uint64 FenceValue);
 

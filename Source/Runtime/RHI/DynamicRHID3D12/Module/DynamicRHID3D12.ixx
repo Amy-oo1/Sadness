@@ -30,6 +30,7 @@ export import :CommandList;
 export import :CommandListManager;
 export import :SamplerManager;
 export import :TextureManager;
+export import :StateCache;
 export import :CommandContext;
 export import :Implementation;
 

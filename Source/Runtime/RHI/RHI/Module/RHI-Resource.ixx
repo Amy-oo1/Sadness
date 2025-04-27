@@ -186,14 +186,30 @@ private:
 
 };
 
+export struct RHIOffset2D {
+	Uint32 X;
+	Uint32 Y;
+};
+
+export struct RHIOffsert3D {
+	Uint32 X;
+	Uint32 Y;
+	Uint32 Z;
+};
+
 export struct RHIExtent2D final {
-	Uint32 Width { 0 };
-	Uint32 Height { 0 };
+	Uint32 Width;
+	Uint32 Height;
 };
 
 export struct RHIExtent3D final {
-	Uint32 Width { 0 };
-	Uint32 Height { 0 };
-	Uint32 Depth { 0 };
+	Uint32 Width;
+	Uint32 Height;
+	Uint32 Depth;
+};
+
+export struct RHIRect2D final {
+	RHIOffset2D Offset;
+	RHIExtent2D Extent;
 };
 

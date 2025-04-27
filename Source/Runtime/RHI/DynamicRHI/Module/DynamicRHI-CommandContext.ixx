@@ -13,6 +13,7 @@ import Logger;
 import RHI;
 
 
+//NOTE :Some Platform is not FSL
 export template <typename Derived>
 class RHICommandContext :public MoveAbleOnly{
 protected:
@@ -36,7 +37,7 @@ export template <typename Derived>
 class RHIComputeContext : public RHICommandContext<Derived> {
     friend class RHICommandContext<Derived>;
 protected:
-	RHIComputeContext() = default;
+	RHIComputeContext(void) = default;
 
 public:
 	virtual ~RHIComputeContext(void) = default;
@@ -57,7 +58,7 @@ export template <typename Derived>
 class RHIGraphicsContext : public RHICommandContext<Derived> {
 	friend class RHICommandContext<Derived>;
 protected:
-	RHIGraphicsContext() = default;
+	RHIGraphicsContext(void) = default;
 
 public:
 	virtual ~RHIGraphicsContext(void) = default;
@@ -65,11 +66,19 @@ public:
 
 public:
 
+	void Set_Scissor(const RHIRect2D& InScissor) {
+		Get_Derived()->Imp_Set_Scissor(InScissor);
+	}
+
 
 private:
 	Derived* Get_Derived(void) { return static_cast<Derived*>(this); }
 
 private:
+
+	void Imp_Set_Scissor(const RHIRect2D& InScissor) {
+		LOG_INFO("Imp_Set_Scissor::RHIRect2D");
+	}
 
 
 };

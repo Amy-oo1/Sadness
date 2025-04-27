@@ -36,19 +36,19 @@ namespace Math {
 		operator XMVECTOR(void) const { return m_Vec; }
 
 	public:
-		[[nodiscard]] Vector3 operator+(void) { return *this; }
-		[[nodiscard]] Vector3 operator-(void) { return Vector3(XMVectorNegate(this->m_Vec)); }
+		[[nodiscard]] Vector3 operator+(void) const { return *this; }
+		[[nodiscard]] Vector3 operator-(void) const { return Vector3(XMVectorNegate(this->m_Vec)); }
 		
-		[[nodiscard]] Vector3 operator+(Vector3 v) { return Vector3(XMVectorAdd(this->m_Vec, v)); }
-		[[nodiscard]] Vector3 operator-(Vector3 v) { return Vector3(XMVectorSubtract(this->m_Vec, v)); }
-		[[nodiscard]] Vector3 operator*(Vector3 v) { return Vector3(XMVectorMultiply(this->m_Vec, v)); }
-		[[nodiscard]] Vector3 operator/(Vector3 v) { return Vector3(XMVectorDivide(this->m_Vec, v)); }
+		[[nodiscard]] Vector3 operator+(Vector3 v) const { return Vector3(XMVectorAdd(this->m_Vec, v)); }
+		[[nodiscard]] Vector3 operator-(Vector3 v) const { return Vector3(XMVectorSubtract(this->m_Vec, v)); }
+		[[nodiscard]] Vector3 operator*(Vector3 v) const { return Vector3(XMVectorMultiply(this->m_Vec, v)); }
+		[[nodiscard]] Vector3 operator/(Vector3 v) const { return Vector3(XMVectorDivide(this->m_Vec, v)); }
 		
-		[[nodiscard]] Vector3 operator*(Scalar s) { return *this * Vector3(s); }
-		[[nodiscard]] Vector3 operator/(Scalar s) { return *this / Vector3(s); }
+		[[nodiscard]] Vector3 operator*(Scalar s) const { return *this * Vector3(s); }
+		[[nodiscard]] Vector3 operator/(Scalar s) const { return *this / Vector3(s); }
 		
-		[[nodiscard]] Vector3 operator*(float s) { return *this * Scalar(s); }
-		[[nodiscard]] Vector3 operator/(float s) { return *this / Scalar(s); }
+		[[nodiscard]] Vector3 operator*(float s) const { return *this * Scalar(s); }
+		[[nodiscard]] Vector3 operator/(float s) const { return *this / Scalar(s); }
 
 		friend [[nodiscard]] Vector3 operator*(Scalar v1, Vector3 v2) { return Vector3{ v1 } *v2; }
 		friend [[nodiscard]] Vector3 operator/(Scalar v1, Vector3 v2) { return Vector3(v1) / v2; }

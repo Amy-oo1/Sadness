@@ -30,9 +30,13 @@ namespace Math {
 		Matrix4x4(Matrix3x3 mat3x3,Vector3 w) : m_Mat{ mat3x3.Get_X(), mat3x3.Get_Y(), mat3x3.Get_Z(), Vector4{w,0} } {}
 
 		explicit Matrix4x4(FXMMATRIX mat) : m_Mat{mat} {}
-		explicit Matrix4x4(EZeroTag) : m_Mat{ Vector4{EZeroTag::Zero}, Vector4{EZeroTag::Zero}, Vector4{EZeroTag::Zero}, Vector4{EZeroTag::Zero} } {}
+		explicit Matrix4x4(EZeroTag) : m_Mat { Vector4{ EZeroTag::Zero }, Vector4{ EZeroTag::Zero }, Vector4{ EZeroTag::Zero }, Vector4{ EZeroTag::Zero } } {}
 		explicit Matrix4x4(EIdentityTag) : m_Mat{ XMMatrixIdentity() } {}
 	
+		operator XMMATRIX(void) const { return m_Mat; }
+
+		operator Matrix3x3(void)const { return Matrix3x3 { this->m_Mat }; }
+
 	public:
 		[[nodiscard]] Matrix4x4 operator*(Matrix4x4 rhs) const {
 			return Matrix4x4{ XMMatrixMultiply(this->m_Mat, rhs.m_Mat) };
@@ -56,6 +60,9 @@ namespace Math {
 		void Set_Y(Vector4 y) { this->m_Mat.r[1] = y; }
 		void Set_Z(Vector4 z) { this->m_Mat.r[2] = z; }
 		void Set_W(Vector4 w) { this->m_Mat.r[3] = w; }
+
+	public:
+
 
 	private:
 		XMMATRIX m_Mat;

@@ -294,6 +294,12 @@
     <ClCompile Include="..\..\Source\Runtime\Core\Concurrent\Module\Concurrent-Container.ixx">
       <Filter>Concurrent\Module</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Transform.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Bounding.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Runtime\Core\Platform\Include\PlatformMacros.h">

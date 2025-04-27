@@ -57,6 +57,14 @@ export constexpr int g_MaxSwapChainBufferCount { 3 };
 //TODO Move To WIndows Platform Include
 export const HANDLE g_InvalidHandleValue { INVALID_HANDLE_VALUE };
 
+//constexpr D3D12_SHADER_RESOURCE_VIEW_DESC g_DefaultSRVDesc {
+//	.Format = DXGI_FORMAT_B8G8R8A8_UNORM,
+//	.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D,
+//	.Texture2D {
+//	
+//	}
+//};
+
 
 
 

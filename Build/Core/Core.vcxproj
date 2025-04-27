@@ -181,6 +181,7 @@
     <ClCompile Include="..\..\Source\Runtime\Core\IO\Module\SyncIO-Console.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\IO\Module\SyncIO.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Logger\Module\Logger.ixx" />
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Bounding.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Common.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Function.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Implementation.ixx" />
@@ -188,6 +189,7 @@
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Matrix4x4.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Quaternion.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Scalar.ixx" />
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Transform.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Vector2.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Vector3.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Vector4.ixx" />

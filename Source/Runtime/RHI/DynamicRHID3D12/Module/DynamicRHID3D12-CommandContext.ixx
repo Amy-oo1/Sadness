@@ -28,18 +28,42 @@ import :GPUNode;
 import :RootSignatureManager;
 
 import :CommandList;
+import :CommandListManager;
+import :SamplerManager;
+import :TextureManager;
+//import :StateCache;
 
 //TODO :do not use this class  has too many base class ........
 export template <typename Derived>
-class CommandContext {
+class CommandContext :public DeviceChild ,public SingleNodeGPUObject{
 protected:
-	CommandContext(void) = default;
+	CommandContext(Device* Parent, RHIGPUMask InGPUIndex):
+		DeviceChild { Parent },
+		SingleNodeGPUObject { InGPUIndex } {
+	}
 public:
 	virtual ~CommandContext(void) = default;
+
+
+private:
+
+
+public:
+
+private:
+	CommandAllocator* m_CommandAllocator { nullptr };
+	CommandList* m_CommandList { nullptr };
+
+
+private:
+	Derived* Get_Derived(void) { return static_cast<Derived*>(this); }
+
+private:
+	
+	
 };
 
 export class ComputeContext final :
-	public DeviceChild,
 	public RHIComputeContext<ComputeContext>,
 	public CommandContext<ComputeContext> {
 
@@ -47,10 +71,9 @@ export class ComputeContext final :
 	friend class CommandContext<ComputeContext>;
 
 public:
-	ComputeContext(Device* Parent) :
-		DeviceChild { Parent },
+	ComputeContext(Device* Parent,RHIGPUMask InGPUIndex) :
 		RHIComputeContext<ComputeContext>{},
-		CommandContext<ComputeContext>{} {
+		CommandContext<ComputeContext>{ Parent, InGPUIndex } {
 	}
 
 	~ComputeContext(void) = default;
@@ -60,15 +83,25 @@ public:
 
 private:
 
+	void Imp_Set_Scissor(const RHIRect2D& InScissor) {
+		const D3D12_RECT Scissor {
+			.left{static_cast<LONG>(InScissor.Offset.X)},
+			.top{static_cast<LONG>(InScissor.Offset.Y)} ,
+			.right{static_cast<LONG>(InScissor.Offset.X + InScissor.Extent.Width)},
+			.bottom{static_cast<LONG>(InScissor.Offset.Y + InScissor.Extent.Height)}
+		};
+
+
+
+	}
+
 
 
 private:
 
-
 };
 
 export class GraphicsContext final :
-	public DeviceChild,
 	public RHIGraphicsContext<GraphicsContext>,
 	public CommandContext<GraphicsContext> {
 
@@ -76,10 +109,9 @@ export class GraphicsContext final :
 	friend class CommandContext<GraphicsContext>;
 
 public:
-	GraphicsContext(Device* Parent) :
-		DeviceChild { Parent },
+	GraphicsContext(Device* Parent, RHIGPUMask InGPUIndex) :
 		RHIGraphicsContext<GraphicsContext>{},
-		CommandContext<GraphicsContext>{} {
+		CommandContext<GraphicsContext>{ Parent, InGPUIndex } {
 	}
 
 	~GraphicsContext(void) = default;

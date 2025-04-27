@@ -146,6 +146,8 @@
     <ClCompile Include="..\..\Source\Runtime\Engine\ApplicationContext\Module\ApplicationContext-ApplicationContextBase.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Engine\ApplicationContext\Module\ApplicationContext-Windows.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Engine\ApplicationContext\Module\ApplicationContext.ixx" />
+    <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\Camera-Base.ixx" />
+    <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\Camera.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Engine\Configer\Module\Configer.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Engine\Global\Module\Global.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Engine\Launch\Module\Launch-Universal.ixx" />

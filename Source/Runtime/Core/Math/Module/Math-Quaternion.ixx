@@ -22,10 +22,12 @@ namespace Math {
 		Quaternion(FXMVECTOR vec) : m_Quat{ vec } {}
 		Quaternion(FXMMATRIX mat) : m_Quat{ XMQuaternionRotationMatrix(mat) } {}
 
-		Quaternion(Vector3 Axis, Scalar Angle) : m_Quat{ XMQuaternionRotationAxis(Axis, Angle) } {}
+		Quaternion(Vector3 Axis, float Angle) : m_Quat { XMQuaternionRotationAxis(Axis, Angle) } {}
 		Quaternion(float patch, float yaw, float roll) : m_Quat{ XMQuaternionRotationRollPitchYaw(patch, yaw, roll) } {}
 
 		Quaternion(EIdentityTag) : m_Quat{ XMQuaternionIdentity() } {}
+
+		operator XMVECTOR(void) const { return m_Quat; }
 
 	public:
 		[[nodiscard]] Quaternion operator+(void) { return *this; }

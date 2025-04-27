@@ -73,6 +73,18 @@
     <Filter Include="Global\Src">
       <UniqueIdentifier>{c8abaf57-e93f-4ca2-aebd-985581c2216f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{75206aa2-32c3-4039-bd67-b611e4007c71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera\Include">
+      <UniqueIdentifier>{2a136d15-f05e-432c-97b1-92e23462b2e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera\Src">
+      <UniqueIdentifier>{de264ba0-9674-430d-bcc9-45811ee2776f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera\Module">
+      <UniqueIdentifier>{38b2845d-e872-4212-828b-630fe8fb1587}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Runtime\Engine\ApplicationContext\Module\ApplicationContext.ixx">
@@ -119,6 +131,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Runtime\Engine\Root\Module\Root-Forward.ixx">
       <Filter>Root\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\Camera.ixx">
+      <Filter>Camera\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\Camera-Base.ixx">
+      <Filter>Camera\Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

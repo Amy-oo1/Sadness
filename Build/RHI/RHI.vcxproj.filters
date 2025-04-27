@@ -120,6 +120,9 @@
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-CommandContext.ixx">
       <Filter>DynamicRHID3D12\Module</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-StateCache.ixx">
+      <Filter>DynamicRHID3D12\Module</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Include\D3D12APIWrapper.h">

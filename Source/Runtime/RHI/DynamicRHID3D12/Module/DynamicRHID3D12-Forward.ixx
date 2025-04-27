@@ -17,6 +17,15 @@ class DescriptorAllocator;
 export template<D3D12_DESCRIPTOR_HEAP_TYPE _Type>
 class DescriptorHandle;
 
+export template<typename Derived>
+class DescriptorHeapBase;
+export class GlobalSamplerHeap;
+export class GlobalViewHeap;
+export class LocalSamplerHeap;
+export class LocalViewHeap;
+
+export class DescriptorCache;
+
 export class GPUNode;
 
 export class SamplerManager;

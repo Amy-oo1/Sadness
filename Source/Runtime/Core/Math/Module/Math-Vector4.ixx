@@ -29,29 +29,29 @@ namespace Math {
 		explicit Vector4(Vector3 xyz, float w) : m_Vec{ XMVectorSetW(xyz, w) } {}
 		explicit Vector4(Vector3 xyz, Scalar W) : m_Vec{ XMVectorSetW(xyz, W) } {}
 
-		explicit Vector4(EZeroTag) : m_Vec{ XMCreateZero() } {}
-		explicit Vector4(EIdentityTag) : m_Vec{ XMCreateOne() } {}
-		explicit Vector4(EXUnitVector) : m_Vec{ CreateXUnitVertex() } {}
-		explicit Vector4(EYUnitVector) : m_Vec{ CreateYUnitVertex() } {}
-		explicit Vector4(EZUnitVector) : m_Vec{ CreateZUnitVertex() } {}
-		explicit Vector4(EWUnitVector) : m_Vec{ CreateWUnitVertex() } {}
+		Vector4(EZeroTag) : m_Vec{ XMCreateZero() } {}
+		Vector4(EIdentityTag) : m_Vec{ XMCreateOne() } {}
+		Vector4(EXUnitVector) : m_Vec{ CreateXUnitVertex() } {}
+		Vector4(EYUnitVector) : m_Vec{ CreateYUnitVertex() } {}
+		Vector4(EZUnitVector) : m_Vec{ CreateZUnitVertex() } {}
+		explicit Vector4(EWUnitVector) : m_Vec{ CreateWUnitVertex() } {}//TODO :here cobine a explicit ,
 		
 		operator XMVECTOR(void) const { return m_Vec; }
 
 	public:
-		[[nodiscard]] Vector4 operator+(void) { return *this; }
-		[[nodiscard]] Vector4 operator-(void) { return Vector4(XMVectorNegate(this->m_Vec)); }
+		[[nodiscard]] Vector4 operator+(void) const { return *this; }
+		[[nodiscard]] Vector4 operator-(void) const { return Vector4(XMVectorNegate(this->m_Vec)); }
 
-		[[nodiscard]] Vector4 operator+(Vector4 v) { return Vector4(XMVectorAdd(this->m_Vec, v)); }
-		[[nodiscard]] Vector4 operator-(Vector4 v) { return Vector4(XMVectorSubtract(this->m_Vec, v)); }
-		[[nodiscard]] Vector4 operator*(Vector4 v) { return Vector4(XMVectorMultiply(this->m_Vec, v)); }
-		[[nodiscard]] Vector4 operator/(Vector4 v) { return Vector4(XMVectorDivide(this->m_Vec, v)); }
+		[[nodiscard]] Vector4 operator+(Vector4 v) const { return Vector4(XMVectorAdd(this->m_Vec, v)); }
+		[[nodiscard]] Vector4 operator-(Vector4 v) const { return Vector4(XMVectorSubtract(this->m_Vec, v)); }
+		[[nodiscard]] Vector4 operator*(Vector4 v) const { return Vector4(XMVectorMultiply(this->m_Vec, v)); }
+		[[nodiscard]] Vector4 operator/(Vector4 v) const { return Vector4(XMVectorDivide(this->m_Vec, v)); }
 
-		[[nodiscard]] Vector4 operator*(Scalar s) { return *this * Vector4(s); }
-		[[nodiscard]] Vector4 operator/(Scalar s) { return *this / Vector4(s); }
+		[[nodiscard]] Vector4 operator*(Scalar s) const { return *this * Vector4(s); }
+		[[nodiscard]] Vector4 operator/(Scalar s) const { return *this / Vector4(s); }
 
-		[[nodiscard]] Vector4 operator*(float s) { return *this * Scalar(s); }
-		[[nodiscard]] Vector4 operator/(float s) { return *this / Scalar(s); }
+		[[nodiscard]] Vector4 operator*(float s) const { return *this * Scalar(s); }
+		[[nodiscard]] Vector4 operator/(float s) const { return *this / Scalar(s); }
 
 		friend [[nodiscard]] Vector4 operator*(Scalar v1, Vector4 v2) { return Vector4{ v1 } *v2; }
 		friend [[nodiscard]] Vector4 operator/(Scalar v1, Vector4 v2) { return Vector4{ v1 } / v2; }
@@ -66,14 +66,14 @@ namespace Math {
 		Vector4& operator/=(float s2) { return *this = *this / s2; }
 
 	public:
-		[[nodiscard]] float GetX(void) const { return XMVectorGetX(m_Vec); }
-		[[nodiscard]] float GetY(void) const { return XMVectorGetY(m_Vec); }
-		[[nodiscard]] float GetZ(void) const { return XMVectorGetZ(m_Vec); }
-		[[nodiscard]] float GetW(void) const { return XMVectorGetW(m_Vec); }
+		[[nodiscard]] Scalar Get_X(void) const { return XMVectorGetX(m_Vec); }
+		[[nodiscard]] Scalar Get_Y(void) const { return XMVectorGetY(m_Vec); }
+		[[nodiscard]] Scalar Get_Z(void) const { return XMVectorGetZ(m_Vec); }
+		[[nodiscard]] Scalar GetW(void) const { return XMVectorGetW(m_Vec); }
 		
-		void SetX(float x) { this->m_Vec = XMVectorSetX(m_Vec, x); }
-		void SetY(float y) { this->m_Vec = XMVectorSetY(m_Vec, y); }
-		void SetZ(float z) { this->m_Vec = XMVectorSetZ(m_Vec, z); }
+		void Set_X(float x) { this->m_Vec = XMVectorSetX(m_Vec, x); }
+		void Set_Y(float y) { this->m_Vec = XMVectorSetY(m_Vec, y); }
+		void Set_Z(float z) { this->m_Vec = XMVectorSetZ(m_Vec, z); }
 		void SetW(float w) { this->m_Vec = XMVectorSetW(m_Vec, w); }
 
 	private:

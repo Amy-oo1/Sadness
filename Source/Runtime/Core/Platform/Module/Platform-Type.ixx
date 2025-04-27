@@ -36,6 +36,10 @@ export constexpr auto Max_Uint32 { std::numeric_limits<Uint32>::max() };
 export constexpr auto Max_Int64 { std::numeric_limits<Int64>::max() };
 export constexpr auto Max_Uint64 { std::numeric_limits<Uint64>::max() };
 
+export constexpr auto Min_Float { std::numeric_limits<float>::min() };
+export constexpr auto Max_Float { std::numeric_limits<float>::max() };
+export constexpr auto Min_Double { std::numeric_limits<double>::min() };
+export constexpr auto Max_Double { std::numeric_limits<double>::max() };
 
 export using Size = std::size_t;//NOTE : DO NOT USE IT !!!
 export using TChar = wchar_t;

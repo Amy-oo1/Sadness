@@ -78,6 +78,7 @@ private:
 
 	D3D12_COMMAND_LIST_TYPE m_Type;
 	ComPtr<ID3D12CommandQueue> m_Queue { nullptr };
+	CommandAllocatorManager m_CommandAllocatorManager { this->m_Device ,this->m_Type };		
 
 	FenceCommandList m_Fence;
 

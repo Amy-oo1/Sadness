@@ -10,6 +10,10 @@ import RHI;
 //I will Set Public to op
 export template<typename Derived, typename APITag = g_CurrentAPI>
 class RHIResourceBase :public MoveAbleOnly {
+protected:
+	RHIResourceBase(void) = default;
+
+
 public:
 	virtual ~RHIResourceBase(void) = default;
 	

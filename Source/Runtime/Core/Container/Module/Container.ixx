@@ -9,3 +9,4 @@ export import :Queue;
 export import :Optional;
 export import :Hash;
 export import :Map;
+export import :Span;

@@ -10,8 +10,14 @@ namespace Math {
 	export class Matrix4x4;
 	export class Quaternion;
 
-	Matrix4x4 Transpose(Matrix4x4 mat);
-	Matrix4x4 Invert(Matrix4x4 mat);
-	Matrix4x4 OrthoInvert(Matrix4x4 xform);
+	export Matrix4x4 Transpose(Matrix4x4 mat);
+	export Matrix4x4 Invert(Matrix4x4 mat);
+	export Matrix4x4 OrthoInvert(Matrix4x4 xform);
+
+	export class Frustum;
+
+	export class OrthogonalTransform;
+	export class AffineTransform;
+	export class BoundingSphere;
 
 }

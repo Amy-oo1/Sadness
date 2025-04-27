@@ -71,6 +71,13 @@ public:
 	D3D12_RESOURCE_BINDING_TIER Get_ResourceBindingTier(void) { return D3D12_RESOURCE_BINDING_TIER_1; }//TODO :
 
 
+
+public:
+	void CreateStaticSampler(const RHISamplerDesc& Desc);
+
+	void CreateTexture2D(const RHITextrure2DDesc& Desc, Uint8* data);
+
+
 private:
 	//TODO :not all type can not in auto ptr ,unless you make a delete ,typpe is too much,use new delete
 	void InitializatiePartGPUNode(void);
@@ -84,6 +91,10 @@ private:
 	void InitializatiePartCommandListManager(void);
 
 	void DestroyPartCommandListManager(void);
+
+	void InitializatiePartSamplerManager(void);
+
+	void DestroyPartSamplerManager(void);
 
 private:
 	ComPtr<IDXGIAdapter2> m_Adapter2;
@@ -99,6 +110,8 @@ private:
 	FenceCorePool* m_FenceCorePool { nullptr };
 	FenceIncrement* m_StagingFence { nullptr };
 	FenceManual* m_FrameFence { nullptr };
+
+	SamplerManager* m_SamplerManager { nullptr };
 
 	D3D12_HEAP_PROPERTIES m_ConstantBufferPageProperties {};//TODO ?
 

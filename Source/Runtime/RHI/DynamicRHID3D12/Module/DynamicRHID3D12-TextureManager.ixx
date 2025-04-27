@@ -57,7 +57,7 @@ public:
 	~TextureManager(void) = default;
 
 public:
-	TextureState* LoadTexture(TString FileName, const D3D12_RESOURCE_DESC& Desc,RHIGPUMask InGPUIndex) {
+	TextureState* LoadTextureDDS(TString FileName, const D3D12_RESOURCE_DESC& Desc,RHIGPUMask InGPUIndex) {
 		TextureState* Re { nullptr };
 
 		{

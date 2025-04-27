@@ -15,10 +15,12 @@ import :Platform;
 
 export enum class RHIFilter :Uint32 {
 	Point,
+	ComparsionPoint,
+	Linear,
 	Bilinear,
 	Trilinear,
-	Anisotropic_MipPoint,
-	Anisotropic_MipLinear,
+	Anisotropic,
+	//Anisotropic_MipLinear,
 	//NOTE :You kan Add ,but must Trans to Api
 	Count
 };
@@ -176,7 +178,7 @@ export struct RHISamplerDesc final{
 	float MipBias { 0.f };
 
 	float MinMipLevel { 0.f };
-	float MaxMipLevel { 0.f };
+	float MaxMipLevel { Max_Float };
 	
 	Int32 MaxAnisotropy { 0 };
 	
@@ -186,7 +188,7 @@ export struct RHISamplerDesc final{
 };
 
 
-class RHISamplerDescBuilder final {
+export class RHISamplerDescBuilder final {
 public:
 	RHISamplerDescBuilder(void) = default;
 public:
@@ -263,6 +265,7 @@ public:
 
 	RHISamplerDescBuilder& Reset(void) {
 		this->desc = RHISamplerDesc {};
+
 		return *this;
 	}
 

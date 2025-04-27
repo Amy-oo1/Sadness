@@ -13,4 +13,5 @@ export import :Quaternion;
 export import :Function;
 export import :Transform;
 export import :Bounding;
+export import :Frustum;
 export import :Implementation;

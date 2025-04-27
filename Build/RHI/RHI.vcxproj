@@ -151,6 +151,7 @@
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-CommandList.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-CommandListManager.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Descriptor.ixx" />
+    <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-LinearAllocation.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-PipelineState.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-Resource.ixx" />
     <ClCompile Include="..\..\Source\Runtime\RHI\DynamicRHID3D12\Module\DynamicRHID3D12-RootSignatureManager.ixx">

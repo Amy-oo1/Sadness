@@ -42,13 +42,12 @@ namespace Math {
 		[[nodiscard]] Scalar operator* (float s) const { return *this * Scalar(s); }
 		[[nodiscard]] Scalar operator/ (float s) const { return *this / Scalar(s); }
 
-		[[nodiscard]] auto operator<(Scalar s) const { return XMVectorLess(this->m_Vec, s); }
-		[[nodiscard]] auto operator>(Scalar s) const { return XMVectorGreater(this->m_Vec, s); }
-		[[nodiscard]] auto operator<=(Scalar s) const { return XMVectorLessOrEqual(this->m_Vec, s); }
-		[[nodiscard]] auto operator>=(Scalar s) const { return XMVectorGreaterOrEqual(this->m_Vec, s); }
-		[[nodiscard]] bool operator== (Scalar s) const { return XMVectorGetX(this->m_Vec) == XMVectorGetX(s); }
-		[[nodiscard]] bool operator!= (Scalar s) const  { return XMVectorGetX(this->m_Vec) != XMVectorGetX(s); }
-
+		[[nodiscard]] auto operator<(float s) const { return XMVectorGetX(*this) < s; }
+		[[nodiscard]] auto operator>(float s) const { return XMVectorGetX(*this) > s; }
+		[[nodiscard]] auto operator<=(float s) const { return XMVectorGetX(*this) <= s; }
+		[[nodiscard]] auto operator>=(float s) const { return XMVectorGetX(*this) >= s; }
+		[[nodiscard]] bool operator== (float s) const { return XMVectorGetX(this->m_Vec) == s; }
+		[[nodiscard]] bool operator!= (float s) const { return XMVectorGetX(this->m_Vec) != s; }
 
 		friend [[nodiscard]] Scalar operator+ (float s1, Scalar s2) { return Scalar{ s1 } + s2; }
 		friend [[nodiscard]] Scalar operator- (float s1, Scalar s2) { return Scalar{ s1 } - s2; }

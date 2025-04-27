@@ -31,16 +31,16 @@ namespace Math {
 	export class OrthogonalTransform final {
 		CONSTEXPR_TRIVIAL_FUNCTION(OrthogonalTransform)
 	public:
-		OrthogonalTransform(EIdentityTag) {};
+		explicit OrthogonalTransform(EIdentityTag) {};
 
-		OrthogonalTransform(Quaternion rotate) : m_Rotation(rotate) {};
-		OrthogonalTransform(Vector3 translate) : m_Translation(translate) {};
-		OrthogonalTransform(Quaternion rotate, Vector3 translate) : m_Rotation(rotate), m_Translation(translate) {};
+		OrthogonalTransform(Quaternion rotate) : m_Rotation { rotate } {};
+		OrthogonalTransform(Vector3 translate) : m_Translation { translate } {};
+		OrthogonalTransform(Quaternion rotate, Vector3 translate) : m_Rotation { rotate }, m_Translation { translate } {};
 
 		OrthogonalTransform(Matrix3x3 mat) :m_Rotation { mat } {}
-		OrthogonalTransform(Matrix3x3 mat, Vector3 translate) :m_Rotation { mat }, m_Translation(translate) {}
+		OrthogonalTransform(Matrix3x3 mat, Vector3 translate) :m_Rotation { mat }, m_Translation { translate } {}
 
-		explicit OrthogonalTransform(const XMMATRIX& mat) { *this = OrthogonalTransform(Matrix3x3(mat), Vector3(mat.r[3])); }
+		explicit OrthogonalTransform(const XMMATRIX& mat) { *this = OrthogonalTransform { Matrix3x3 { mat }, Vector3 { mat.r[3] } }; }
 
 	public:
 
@@ -54,14 +54,17 @@ namespace Math {
 			return BoundingSphere(*this * sphere.Get_Center(), sphere.Get_Radius());
 		}*/
 
-		/*INLINE OrthogonalTransform operator* (const OrthogonalTransform& xform) const {
-			return OrthogonalTransform(m_Rotation * xform.m_Rotation, m_Rotation * xform.m_translation + m_translation);
+		OrthogonalTransform operator* (const OrthogonalTransform& xform) const { 
+			return OrthogonalTransform { 
+				this->m_Rotation * xform.m_Rotation, 
+				this->m_Rotation * xform.m_Translation + this->m_Translation 
+			}; 
 		}
 
-		INLINE OrthogonalTransform operator~ () const {
-			Quaternion invertedRotation = ~m_Rotation;
-			return OrthogonalTransform(invertedRotation, invertedRotation * -m_translation);
-		}*/
+		OrthogonalTransform operator~ (void) const {
+			Quaternion invertedRotation { ~m_Rotation };
+			return OrthogonalTransform { invertedRotation, invertedRotation * this->m_Translation };
+		}
 
 	public:
 		Quaternion Get_Rotation(void) const { return this->m_Rotation; }
@@ -162,11 +165,11 @@ namespace Math {
 
 	public:
 
-		Vector3 Get_X() const { return this->m_basis.Get_X(); }
-		Vector3 Get_Y() const { return this->m_basis.Get_Y(); }
-		Vector3 Get_Z() const { return this->m_basis.Get_Z(); }
-		Vector3 Get_Translation() const { return this->m_translation; }
-		Matrix3x3 Get_Basis() const { return this->m_basis; }
+		Vector3 Get_X(void) const { return this->m_basis.Get_X(); }
+		Vector3 Get_Y(void) const { return this->m_basis.Get_Y(); }
+		Vector3 Get_Z(void) const { return this->m_basis.Get_Z(); }
+		Vector3 Get_Translation(void) const { return this->m_translation; }
+		Matrix3x3 Get_Basis(void) const { return this->m_basis; }
 
 		void Set_X(Vector3 x) { this->m_basis.Set_X(x); }
 		void Set_Y(Vector3 y) { this->m_basis.Set_Y(y); }

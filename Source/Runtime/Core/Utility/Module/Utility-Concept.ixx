@@ -2,6 +2,9 @@ export module Utility : Concept;
 
 import std;
 
+export template<typename Enum>
+using UnderlyingtType = std::underlying_type_t<Enum>;
+
 export template<typename Type>
 concept Integral = std::integral<Type>;
 

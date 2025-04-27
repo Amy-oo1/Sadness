@@ -43,7 +43,9 @@ protected:
 public:
 	virtual ~RootBase(void) = default;
 
-protected:
+
+
+public:
 	Configer& m_Configer;
 	SystemLogger& m_Logger;
 	FileSystem& m_FileSystem;

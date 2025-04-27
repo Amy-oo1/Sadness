@@ -15,6 +15,8 @@ import :Forward;
 
 namespace Math {
 
+	export FORCINLINE float Tanf(float angle) { return std::tanf(angle); }
+
 	export template <class _Ty>
 		constexpr const  _Ty& Max(const _Ty& left, const _Ty& right) {
 		return std::max(left, right);
@@ -165,19 +167,29 @@ namespace Math {
 	//TODO : Add Other Platform
 
 #endif
-	enum class EZeroTag :Uint32{ Zero, Origin };
-	enum class EIdentityTag :Uint32 { One, Identity };
-	enum class EXUnitVector :Uint32 { X };
-	enum class EYUnitVector :Uint32 { Y };
-	enum class EZUnitVector :Uint32 { Z };
-	enum class EWUnitVector :Uint32 { W };
 
-	export using enum EZeroTag;
+	export constexpr auto g_PI { DirectX::XM_PI };
+	export constexpr auto g_2PI { DirectX::XM_2PI };
+	export constexpr auto g_1DIVPI { DirectX::XM_1DIVPI };
+	export constexpr auto g_1DIV2PI { DirectX::XM_1DIV2PI };
+	export constexpr auto g_PIDIV2 { DirectX::XM_PIDIV2 };
+	export constexpr auto g_PIDIV4 { DirectX::XM_PIDIV4 };
+
+
+
+	export enum class EZeroTag :Uint32{ Zero, Origin };
+	export enum class EIdentityTag :Uint32 { One, Identity };
+	export enum class EXUnitVector :Uint32 { X };
+	export enum class EYUnitVector :Uint32 { Y };
+	export enum class EZUnitVector :Uint32 { Z };
+	export enum class EWUnitVector :Uint32 { W };
+
+	/*export using enum EZeroTag;
 	export using enum EIdentityTag;
 	export using enum EXUnitVector;
 	export using enum EYUnitVector;
 	export using enum EZUnitVector;
-	export using enum EWUnitVector;
+	export using enum EWUnitVector;*/
 }
 
 //TODO : Remove FORCEINLINE ?

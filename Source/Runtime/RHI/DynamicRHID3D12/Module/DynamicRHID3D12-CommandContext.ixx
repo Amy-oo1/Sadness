@@ -45,8 +45,20 @@ public:
 	virtual ~CommandContext(void) = default;
 
 
-private:
+	void Reset(void){}
 
+	void InitializeResource(ID3D12Resource* Dest, UINT64 SubResourceCount, D3D12_SUBRESOURCE_DATA* pSrcData) {
+		
+		Uint64 UploadBufferSize { GetRequiredIntermediateSize(Dest,0,SubResourceCount) };
+
+
+	}
+
+
+
+
+private:
+	
 
 public:
 
@@ -126,4 +138,62 @@ private:
 private:
 
 
+};
+
+export enum class CommandContextType :Uint8 {
+	Compute,
+	Graphics,
+	Count
+};
+
+export template<CommandContextType _ContextType>
+struct CommandContextTraits;
+
+export template<>
+struct CommandContextTraits<CommandContextType::Compute> final{
+	using ContextType = ComputeContext;
+};
+
+export template<>
+struct CommandContextTraits<CommandContextType::Graphics> final{
+	using ContextType = GraphicsContext;
+};
+
+
+export template<CommandContextType _ContextType>
+class CommandContextManager final :public DeviceChild, SingleNodeGPUObject{
+public:
+	using ContextType = typename CommandContextTraits<_ContextType>::ContextType;
+
+	CommandContextManager(Device* Parent, RHIGPUMask InGPUIndex) :
+		DeviceChild { Parent },
+		SingleNodeGPUObject { InGPUIndex } {
+	}
+	~CommandContextManager(void) = default;
+
+public:
+	ContextType* Allocate(void) {
+		{
+			LockGuard<Mutex> Lock { this->m_Mutex };
+			if (!this->m_AvailableContexts.empty()) {
+				auto Context { this->m_AvailableContexts.front() };
+				this->m_AvailableContexts.pop();
+
+				Context->Reset();
+				return Context;
+			}
+			else {
+				this->m_ContextPool.emplace_back(MakeUnique<ContextType>(this->GetDevice(), this->Get_GPUMask()));
+
+				return this->m_ContextPool.back().get();
+			}
+		}
+	}
+
+
+private:
+	Mutex m_Mutex {};
+
+	Vector<UniquePtr<ContextType>> m_ContextPool {};
+	Queue<ContextType*> m_AvailableContexts {};
 };

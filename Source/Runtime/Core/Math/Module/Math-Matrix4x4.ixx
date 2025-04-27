@@ -26,13 +26,16 @@ namespace Math {
 		constexpr Matrix4x4(Vector4 x, Vector4 y, Vector4 z, Vector4 w) : m_Mat{ x,y,z,w } {}
 		Matrix4x4(Vector3 x, Vector3 y, Vector3 z) :m_Mat{ Vector4{x,0},Vector4{y,0},Vector4{z,0},Vector4{EWUnitVector::W} } {}
 
-		explicit Matrix4x4(Matrix3x3 mat3x3) : m_Mat{ mat3x3.Get_X(), mat3x3.Get_Y(), mat3x3.Get_Z(), Vector4{EWUnitVector::W} } {}
+		Matrix4x4(Matrix3x3 mat3x3) : m_Mat{ mat3x3.Get_X(), mat3x3.Get_Y(), mat3x3.Get_Z(), Vector4{EWUnitVector::W} } {}
 		Matrix4x4(Matrix3x3 mat3x3,Vector3 w) : m_Mat{ mat3x3.Get_X(), mat3x3.Get_Y(), mat3x3.Get_Z(), Vector4{w,0} } {}
 
-		explicit Matrix4x4(FXMMATRIX mat) : m_Mat{mat} {}
+		Matrix4x4(FXMMATRIX mat) : m_Mat{mat} {}
 		explicit Matrix4x4(EZeroTag) : m_Mat { Vector4{ EZeroTag::Zero }, Vector4{ EZeroTag::Zero }, Vector4{ EZeroTag::Zero }, Vector4{ EZeroTag::Zero } } {}
 		explicit Matrix4x4(EIdentityTag) : m_Mat{ XMMatrixIdentity() } {}
 	
+		explicit Matrix4x4(AffineTransform xform);
+		explicit Matrix4x4(OrthogonalTransform xform);
+
 		operator XMMATRIX(void) const { return m_Mat; }
 
 		operator Matrix3x3(void)const { return Matrix3x3 { this->m_Mat }; }
@@ -62,6 +65,10 @@ namespace Math {
 		void Set_W(Vector4 w) { this->m_Mat.r[3] = w; }
 
 	public:
+		static Matrix4x4 MakeScale(float scale) { return Matrix4x4 { XMMatrixScaling(scale, scale, scale) }; }
+		static Matrix4x4 MakeScale(Vector3 scale) { return Matrix4x4 { XMMatrixScalingFromVector(scale) }; }
+
+
 
 
 	private:

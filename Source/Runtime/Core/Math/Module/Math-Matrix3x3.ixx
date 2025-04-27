@@ -22,8 +22,8 @@ namespace Math {
 
 		explicit Matrix3x3(FXMMATRIX mat) : m_Mat{ Vector3{mat.r[0]}, Vector3{mat.r[1]}, Vector3{mat.r[2]} } {}
 
-		Matrix3x3(EZeroTag) : m_Mat{ Vector3{EZeroTag::Zero}, Vector3{EZeroTag::Zero}, Vector3{EZeroTag::Zero} } {}
-		Matrix3x3(EIdentityTag) : m_Mat{ Vector3{EXUnitVector::X}, Vector3{EYUnitVector::Y}, Vector3{EZUnitVector::Z} } {}
+		explicit Matrix3x3(EZeroTag) : m_Mat{ Vector3{EZeroTag::Zero}, Vector3{EZeroTag::Zero}, Vector3{EZeroTag::Zero} } {}
+		explicit Matrix3x3(EIdentityTag) : m_Mat{ Vector3{EXUnitVector::X}, Vector3{EYUnitVector::Y}, Vector3{EZUnitVector::Z} } {}
 
 		operator XMMATRIX(void) const { return XMMATRIX { this->m_Mat[0], this->m_Mat[1], this->m_Mat[2], XMVectorZero() }; }
 

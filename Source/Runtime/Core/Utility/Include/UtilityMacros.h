@@ -42,3 +42,16 @@
 	if (x != ErrorCode::Success) { \
 		 { assert(false); }\
 	} \
+
+
+#define HAS_FUNCTION(Class, Func) \
+static_assert(requires(Class& obj) { obj.Func; }, \
+"Class " #Class " missing function: " #Func)
+
+#define HAS_NESTED_TYPE(Class, TypeName) \
+static_assert(requires { typename Class::TypeName; }, \
+"Class " #Class " missing nested type: " #TypeName)
+
+#define HAS_MEMBER_VARIABLE(Class, Member) \
+    static_assert(requires(Class& obj) { obj.Member; }, \
+                  "Class " #Class " missing member variable: " #Member)

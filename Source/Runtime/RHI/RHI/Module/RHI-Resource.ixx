@@ -213,3 +213,21 @@ export struct RHIRect2D final {
 	RHIExtent2D Extent;
 };
 
+
+export struct RHISampleDesc {
+	Uint32 Count { 1 };
+	Uint32 Quality { 0 };
+};
+
+export struct RHITextrure2DDesc final {
+	Uint64 RowPitchBytes;
+	Uint32 Width;
+	Uint32 Height;
+	Uint32 MipLevels { 1 };
+
+	RHIPixelFormat Format { RHIPixelFormat::UNKNOWN };
+	RHITextureFlags Flags { RHITextureFlags::UNKNOWN };
+	RHISampleDesc SampleDesc {};
+	Optional<RHIClearValue> ClearValue { NullOpt };
+};
+

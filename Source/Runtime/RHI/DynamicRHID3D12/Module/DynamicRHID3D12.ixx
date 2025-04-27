@@ -21,6 +21,7 @@ export import :Common;
 export import :Device;
 export import :Descriptor;
 //export import :TextureManager;
+export import :LinearAllocation;
 export import :Resource;
 export import :Fence;
 export import :GPUNode;
@@ -57,15 +58,17 @@ public:
 
 private:
 	//TODO Comple Resource Is Out !!!
-	RHIPixelFormatManager<g_CurrentAPI>& m_PixelFormatTranslate;
-	RHISamplerFilterManager<g_CurrentAPI>& m_SamplerFilterTranslate;
-	RHISamplerAddressModeManager<g_CurrentAPI>& m_SamplerAddressModeTranslate;
+	RHIPixelFormatManager<D3D12Tag>& m_PixelFormatTranslate;
+	RHISamplerFilterManager<D3D12Tag>& m_SamplerFilterTranslate;
+	RHISamplerCompareFuncManager<D3D12Tag>& m_SamplerCompareFuncTranslate;
+	RHISamplerAddressModeManager<D3D12Tag>& m_SamplerAddressModeTranslate;
 
 	//TODO : Becaule Init be split ,so i defualt cont them
 
 private:
 	void TranslatePixelFormat(void);
 	void TranslateSamplerFilter(void);
+	void TranslateSamplerCompareFunc(void);
 	void TranslateSamplerAddressMode(void);
 
 private:
@@ -76,7 +79,10 @@ private:
 
 	void Imp_RHIPostInitialize(void);
 
-	void Imp_RHICreateSamplerState(const RHISamplerDesc& Desc);
+	void Imp_RHICreateStaticSampler(const RHISamplerDesc& StateSampler);
+
+	void Imp_RHICreateTextur2D(const RHITextrure2DDesc& Desc, Uint8* pdata);
+
 
 private:
 
@@ -102,15 +108,17 @@ private:
 
 DynamicRHID3D12::DynamicRHID3D12(void):
 	DynamicRHI<DynamicRHID3D12> {},
-	m_PixelFormatTranslate { RHIPixelFormatManager<g_CurrentAPI>::Get() },
-	m_SamplerFilterTranslate { RHISamplerFilterManager<g_CurrentAPI>::Get() },
-	m_SamplerAddressModeTranslate { RHISamplerAddressModeManager<g_CurrentAPI>::Get() } {
+	m_PixelFormatTranslate { RHIPixelFormatManager<D3D12Tag>::Get() },
+	m_SamplerFilterTranslate { RHISamplerFilterManager<D3D12Tag>::Get() },
+	m_SamplerAddressModeTranslate { RHISamplerAddressModeManager<D3D12Tag>::Get() },
+	m_SamplerCompareFuncTranslate { RHISamplerCompareFuncManager<D3D12Tag>::Get() } {
 
 
 	this->FindAdapterAndCreateDevices();
 
 	this->TranslatePixelFormat();
 	this->TranslateSamplerFilter();
+	this->TranslateSamplerCompareFunc();
 	this->TranslateSamplerAddressMode();
 }
 
@@ -141,23 +149,42 @@ void DynamicRHID3D12::FindAdapterAndCreateDevices(void){
 
 //TODO Mybe thsi can use to Compile Time
 void DynamicRHID3D12::TranslatePixelFormat(void){
-	this->m_PixelFormatTranslate.AddTransFormat(RHIPixelFormat::R8G8B8A8_UNORM,			DXGI_FORMAT_R8G8B8A8_UNORM);
-	this->m_PixelFormatTranslate.AddTransFormat(RHIPixelFormat::R8G8B8A8_UNORM_SRGB,	DXGI_FORMAT_R8G8B8A8_UNORM_SRGB);
-	this->m_PixelFormatTranslate.AddTransFormat(RHIPixelFormat::R8G8B8A8_UINT,			DXGI_FORMAT_R8G8B8A8_UINT);
-	this->m_PixelFormatTranslate.AddTransFormat(RHIPixelFormat::R8G8B8A8_SNORM,			DXGI_FORMAT_R8G8B8A8_SNORM);
+	using enum RHIPixelFormat;
+	this->m_PixelFormatTranslate.AddTransFormat(R8G8B8A8_UNORM,				DXGI_FORMAT_R8G8B8A8_UNORM);
+	this->m_PixelFormatTranslate.AddTransFormat(R8G8B8A8_UNORM_SRGB,		DXGI_FORMAT_R8G8B8A8_UNORM_SRGB);
+	this->m_PixelFormatTranslate.AddTransFormat(R8G8B8A8_UINT,				DXGI_FORMAT_R8G8B8A8_UINT);
+	this->m_PixelFormatTranslate.AddTransFormat(R8G8B8A8_SNORM,				DXGI_FORMAT_R8G8B8A8_SNORM);
 }
 
 void DynamicRHID3D12::TranslateSamplerFilter(void){
-	this->m_SamplerFilterTranslate.AddTransFilter(RHIFilter::Point,						D3D12_FILTER_COMPARISON_MIN_MAG_MIP_POINT);
-	this->m_SamplerFilterTranslate.AddTransFilter(RHIFilter::Bilinear,					D3D12_FILTER_COMPARISON_MIN_MAG_MIP_LINEAR);
+	using enum RHIFilter;
+	this->m_SamplerFilterTranslate.AddTransFilter(Point,					D3D12_FILTER_MIN_MAG_MIP_POINT);
+	this->m_SamplerFilterTranslate.AddTransFilter(ComparsionPoint,			D3D12_FILTER_COMPARISON_MIN_MAG_LINEAR_MIP_POINT);//TODO  :
+	this->m_SamplerFilterTranslate.AddTransFilter(Linear, 					D3D12_FILTER_MIN_MAG_MIP_LINEAR);
+	this->m_SamplerFilterTranslate.AddTransFilter(Bilinear,					D3D12_FILTER_MIN_MAG_LINEAR_MIP_POINT);
+	this->m_SamplerFilterTranslate.AddTransFilter(Trilinear,				D3D12_FILTER_MIN_MAG_MIP_LINEAR);
+	this->m_SamplerFilterTranslate.AddTransFilter(Anisotropic,				D3D12_FILTER_ANISOTROPIC);
+}
+
+void DynamicRHID3D12::TranslateSamplerCompareFunc(void){
+	using enum RHISamplerCompareFunc;
+	this->m_SamplerCompareFuncTranslate.AddTransCompareFunc(NEVER,			D3D12_COMPARISON_FUNC_NEVER);
+	this->m_SamplerCompareFuncTranslate.AddTransCompareFunc(LESS,			D3D12_COMPARISON_FUNC_LESS);
+	this->m_SamplerCompareFuncTranslate.AddTransCompareFunc(EQUAL,			D3D12_COMPARISON_FUNC_EQUAL);
+	this->m_SamplerCompareFuncTranslate.AddTransCompareFunc(LESS_EQUAL,		D3D12_COMPARISON_FUNC_LESS_EQUAL);
+	this->m_SamplerCompareFuncTranslate.AddTransCompareFunc(GREATER,		D3D12_COMPARISON_FUNC_GREATER);
+	this->m_SamplerCompareFuncTranslate.AddTransCompareFunc(NOT_EQUAL,		D3D12_COMPARISON_FUNC_NOT_EQUAL);
+	this->m_SamplerCompareFuncTranslate.AddTransCompareFunc(GREATER_EQUAL,	D3D12_COMPARISON_FUNC_GREATER_EQUAL);
+	this->m_SamplerCompareFuncTranslate.AddTransCompareFunc(ALWAYS,			D3D12_COMPARISON_FUNC_ALWAYS);
 }
 
 void DynamicRHID3D12::TranslateSamplerAddressMode(void){
-	this->m_SamplerAddressModeTranslate.AddTransAddressMode(RHIAddressMode::Wrap,		D3D12_TEXTURE_ADDRESS_MODE_WRAP);
-	this->m_SamplerAddressModeTranslate.AddTransAddressMode(RHIAddressMode::Mirror,		D3D12_TEXTURE_ADDRESS_MODE_MIRROR);
-	this->m_SamplerAddressModeTranslate.AddTransAddressMode(RHIAddressMode::Clamp,		D3D12_TEXTURE_ADDRESS_MODE_CLAMP);
-	this->m_SamplerAddressModeTranslate.AddTransAddressMode(RHIAddressMode::Border,		D3D12_TEXTURE_ADDRESS_MODE_BORDER);
-	this->m_SamplerAddressModeTranslate.AddTransAddressMode(RHIAddressMode::MirrorOnce, D3D12_TEXTURE_ADDRESS_MODE_MIRROR_ONCE);
+	using enum RHIAddressMode;
+	this->m_SamplerAddressModeTranslate.AddTransAddressMode(Wrap,			D3D12_TEXTURE_ADDRESS_MODE_WRAP);
+	this->m_SamplerAddressModeTranslate.AddTransAddressMode(Mirror,			D3D12_TEXTURE_ADDRESS_MODE_MIRROR);
+	this->m_SamplerAddressModeTranslate.AddTransAddressMode(Clamp,			D3D12_TEXTURE_ADDRESS_MODE_CLAMP);
+	this->m_SamplerAddressModeTranslate.AddTransAddressMode(Border,			D3D12_TEXTURE_ADDRESS_MODE_BORDER);
+	this->m_SamplerAddressModeTranslate.AddTransAddressMode(MirrorOnce,		D3D12_TEXTURE_ADDRESS_MODE_MIRROR_ONCE);
 }
 
 void DynamicRHID3D12::Imp_RHIPerInitialize(void)
@@ -168,8 +195,11 @@ void DynamicRHID3D12::Imp_RHIPostInitialize(void)
 {
 }
 
-void DynamicRHID3D12::Imp_RHICreateSamplerState(const RHISamplerDesc& Desc)
-{
+void DynamicRHID3D12::Imp_RHICreateStaticSampler(const RHISamplerDesc& StateSampler){
+	this->m_Devices.front()->CreateStaticSampler(StateSampler);
 }
 
+void DynamicRHID3D12::Imp_RHICreateTextur2D(const RHITextrure2DDesc& Desc, Uint8* pdata){
+	//this->m_Devices.front()-
+}
 

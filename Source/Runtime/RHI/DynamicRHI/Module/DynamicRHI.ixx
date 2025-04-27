@@ -5,6 +5,7 @@ export module DynamicRHI;
 
 import Platform;
 import Utility;
+import Concurrent;
 import Logger;
 
 import RHI;
@@ -26,17 +27,20 @@ public:
 
 public:
 	void RHIPerInitialize(void) {
-		this->Get_Derived()->Impl_RHIPerInitialize();
+		this->Get_Derived()->Imp_RHIPerInitialize();
 	}
 
 	void RHIPostInitialize(void) {
-		this->Get_Derived()->Impl_RHIPostInitialize();
+		this->Get_Derived()->Imp_RHIPostInitialize();
 	}
 
-	void RHICreateSamplerState(const RHISamplerDesc& Desc) {
-		this->Get_Derived()->Impl_RHICreateSamplerState(Desc);
+	void RHICreateStaticSampler(const RHISamplerDesc& StateSampler){
+		this->Get_Derived()->Imp_RHICreateStaticSampler(StateSampler);
 	}
 
+	void RHICreateTextur2D(const RHITextrure2DDesc& Desc ,Uint8* pdata) {
+		this->Get_Derived()->Imp_RHICreateTextur2D(Desc, pdata);
+	}
 
 private:
 	Derived* Get_Derived(void) {
@@ -45,16 +49,21 @@ private:
 
 private:
 	//NOTE: this func should be implemented in the derived class
-	void Impl_RHIPerInitialize(void) {
+	void Imp_RHIPerInitialize(void) {
 		LOG_INFO("DynamicRHI::Impl_RHIPerInitialize()");
 	}
 
-	void Impl_RHIPostInitialize(void) {
+	void Imp_RHIPostInitialize(void) {
 		LOG_INFO("DynamicRHI::Impl_RHIPostInitialize()");
 	}
 
-	void Impl_RHICreateSamplerState(const RHISamplerDesc& Desc) {
-		LOG_INFO("DynamicRHI::Impl_RHICreateSamplerState()");
+	void Imp_RHICreateStaticSampler(const Vector<RHISamplerDesc>& StateSamplers) {
+		LOG_INFO("DynamicRHI::Impl_RHICreateStateSampler()");
 	}
+
+	void Imp_RHICreateTextur2D(const RHITextrure2DDesc& Desc, Uint8* pdata) {
+		LOG_INFO("DynamicRHI::Impl_RHICreateTextur2D()");
+	}
+
 
 };

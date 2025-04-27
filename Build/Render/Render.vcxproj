@@ -18,6 +18,18 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.vcxproj">
+      <Project>{c2f648b7-19f8-4efb-a449-55d70d0e36f8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\RHI\RHI.vcxproj">
+      <Project>{0386bbe1-52da-47a2-9a1a-92c8a896683e}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\Runtime\Render\Module\Render-StaticSampler.ixx" />
+    <ClCompile Include="..\..\Source\Runtime\Render\Module\Render.ixx" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -113,6 +125,9 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Source\ThirdParty\spdlog\Include;$(SolutionDir)..\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalBMIDirectories>$(SolutionDir)..\Source\ThirdParty\STL\BMI;$(SolutionDir)Core\Intermediate\$(Configuration);$(SolutionDir)RHI\Intermediate\$(Configuration);%(AdditionalBMIDirectories)</AdditionalBMIDirectories>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,6 +143,9 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Source\ThirdParty\spdlog\Include;$(SolutionDir)..\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalBMIDirectories>$(SolutionDir)..\Source\ThirdParty\STL\BMI;$(SolutionDir)Core\Intermediate\$(Configuration);$(SolutionDir)RHI\Intermediate\$(Configuration);%(AdditionalBMIDirectories)</AdditionalBMIDirectories>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

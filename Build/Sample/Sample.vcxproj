@@ -113,7 +113,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
-      <AdditionalBMIDirectories>$(SolutionDir)Core\Intermediate\$(Configuration);$(SolutionDir)..\Source\ThirdParty\STL\BMI;$(SolutionDir)Engine\Intermediate\$(Configuration);%(AdditionalBMIDirectories)</AdditionalBMIDirectories>
+      <AdditionalBMIDirectories>$(SolutionDir)..\Source\ThirdParty\STL\BMI;$(SolutionDir)Core\Intermediate\$(Configuration);$(SolutionDir)RHI\Intermediate\$(Configuration);$(SolutionDir)Render\Intermediate\$(Configuration);$(SolutionDir)Engine\Intermediate\$(Configuration);%(AdditionalBMIDirectories)</AdditionalBMIDirectories>
       <AdditionalIncludeDirectories>$(SolutionDir)..\Source\ThirdParty\spdlog\Include;$(SolutionDir)..\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalModuleDependencies>
       </AdditionalModuleDependencies>
@@ -139,7 +139,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
-      <AdditionalBMIDirectories>$(SolutionDir)Core\Intermediate\$(Configuration);$(SolutionDir)..\Source\ThirdParty\STL\BMI;$(SolutionDir)Engine\Intermediate\$(Configuration);%(AdditionalBMIDirectories)</AdditionalBMIDirectories>
+      <AdditionalBMIDirectories>$(SolutionDir)..\Source\ThirdParty\STL\BMI;$(SolutionDir)Core\Intermediate\$(Configuration);$(SolutionDir)RHI\Intermediate\$(Configuration);$(SolutionDir)Render\Intermediate\$(Configuration);$(SolutionDir)Engine\Intermediate\$(Configuration);%(AdditionalBMIDirectories)</AdditionalBMIDirectories>
       <AdditionalIncludeDirectories>$(SolutionDir)..\Source\ThirdParty\spdlog\Include;$(SolutionDir)..\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalModuleDependencies>
       </AdditionalModuleDependencies>
@@ -162,6 +162,9 @@
     </ProjectReference>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
       <Project>{d1e46081-86b7-4155-aa98-5b14871de039}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Render\Render.vcxproj">
+      <Project>{6ea58afc-fb7e-4c68-8116-be79f9d284fe}</Project>
     </ProjectReference>
     <ProjectReference Include="..\RHI\RHI.vcxproj">
       <Project>{0386bbe1-52da-47a2-9a1a-92c8a896683e}</Project>

@@ -85,6 +85,18 @@
     <Filter Include="Camera\Module">
       <UniqueIdentifier>{38b2845d-e872-4212-828b-630fe8fb1587}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{b9b14330-094c-48e4-ac24-9c14e76bddef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Include">
+      <UniqueIdentifier>{39b79e89-71c0-4613-84c8-2b530f21b1e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Src">
+      <UniqueIdentifier>{311c0029-b3ea-41af-bd23-cf88a16fec61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Module">
+      <UniqueIdentifier>{d7ce5252-7651-4bab-b784-c3985c5abf43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Runtime\Engine\ApplicationContext\Module\ApplicationContext.ixx">
@@ -138,10 +150,40 @@
     <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\Camera-Base.ixx">
       <Filter>Camera\Module</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\Camera-Common.ixx">
+      <Filter>Camera\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\CameraController.ixx">
+      <Filter>Camera\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\CameraController-Base.ixx">
+      <Filter>Camera\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\CameraController-Orbit.ixx">
+      <Filter>Camera\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\CameraController-Flying.ixx">
+      <Filter>Camera\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Input\Module\Input.ixx">
+      <Filter>Input\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Input\Module\Input-Base.ixx">
+      <Filter>Input\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Input\Module\Input-Windows.ixx">
+      <Filter>Input\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\Camera-Shadow.ixx">
+      <Filter>Camera\Module</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Runtime\Engine\Configer\Include\ConfigMacros.h">
       <Filter>Configer\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Runtime\Engine\Input\Include\XinputWrapper.h">
+      <Filter>Input\Include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

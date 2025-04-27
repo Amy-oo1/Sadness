@@ -25,7 +25,7 @@ namespace Math {
 		Quaternion(Vector3 Axis, float Angle) : m_Quat { XMQuaternionRotationAxis(Axis, Angle) } {}
 		Quaternion(float patch, float yaw, float roll) : m_Quat{ XMQuaternionRotationRollPitchYaw(patch, yaw, roll) } {}
 
-		Quaternion(EIdentityTag) : m_Quat{ XMQuaternionIdentity() } {}
+		explicit Quaternion(EIdentityTag) : m_Quat{ XMQuaternionIdentity() } {}
 
 		operator XMVECTOR(void) const { return m_Quat; }
 
@@ -35,6 +35,9 @@ namespace Math {
 		
 		[[nodiscard]] Quaternion operator*(Quaternion rhi) const {return Quaternion{ XMQuaternionMultiply(rhi.m_Quat,this->m_Quat) };}//NOTE :  // Returns the product Q2*Q1 (which is the concatenation of a rotation Q1 followed by the rotation Q2)
 		[[nodiscard]] Vector3 operator*(Vector3 v) const {return Vector3{ XMVector3Rotate(v, this->m_Quat) };}
+
+		Quaternion operator~ (void) const { return Quaternion(XMQuaternionConjugate(this->m_Quat)); }
+
 
 		Quaternion& operator*=(Quaternion rhi) { *this=*this * rhi; return *this; }
 		

@@ -1,4 +1,6 @@
 module;
+//#include "Runtime/RHI/DynamicRHID3D12/Include/D3D12APIWrapper.h"
+
 #include "d3d12.h"
 #include "ThirdParty/Vulkan/Include/vulkan/vulkan.h"
 
@@ -20,6 +22,7 @@ export struct D3D12Tag final{
 	using CompareFunc = D3D12_COMPARISON_FUNC;
 
 	using ResourcePtr = ID3D12Resource*;
+	using ResourceStates = D3D12_RESOURCE_STATES;
 
     using BlendFactor = D3D12_BLEND;
 
@@ -40,7 +43,10 @@ export struct VulkanTag final{
 	using CompareFunc = VkCompareOp;
 
 	using BufferPtr = VkBuffer;
+	using BufferStates = VkBufferUsageFlags;
+
 	using TexturePtr = VkImage;
+	using TextureStates = VkImageUsageFlags;
 
     using BlendFactor = VkBlendFactor;
 
@@ -58,8 +64,11 @@ struct RHITypeTraits<D3D12Tag> {
 	using AddressMode = D3D12Tag::AddressMode;
 	using CompareFunc = D3D12Tag::CompareFunc;
 
-	using BufferResourcePtr = D3D12Tag::ResourcePtr;
+	using BufferResourcePtr = D3D12Tag::ResourcePtr;//In Vulkan Buffer and Texture is not same
+	using BufferStates = D3D12Tag::ResourceStates;
+
 	using TextureResourcePtr = D3D12Tag::ResourcePtr;
+	using TextureStates = D3D12Tag::ResourceStates;
 
     using BlendFactor = D3D12Tag::BlendFactor;
 };
@@ -74,11 +83,13 @@ struct RHITypeTraits<VulkanTag> {
 	using CompareFunc = VulkanTag::CompareFunc;
 
 	using BufferResourcePtr = VulkanTag::BufferPtr;
+	using BufferStates = VulkanTag::BufferStates;
+
 	using TextureResourcePtr = VulkanTag::TexturePtr;
+	using TextureStates = VulkanTag::TextureStates;
 
     using BlendFactor = VulkanTag::BlendFactor;
 };
-
 
 //NOTE : Runtime to change API no support trans is under in compler
 export using g_CurrentAPI = D3D12Tag;

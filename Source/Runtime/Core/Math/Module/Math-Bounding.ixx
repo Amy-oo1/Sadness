@@ -1,5 +1,9 @@
 module;
+
+#include "ThirdParty/Windows/DirectX/Include/DirectXMath.h"
+
 #include "Runtime/Core/Utility/Include/UtilityMacros.h"
+
 
 export module Math :Bounding;
 

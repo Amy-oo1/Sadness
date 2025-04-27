@@ -33,14 +33,14 @@ namespace Math {
 	public:
 		OrthogonalTransform(EIdentityTag) {};
 
-		OrthogonalTransform(Quaternion rotate) : m_Rotation(rotate) {};
-		OrthogonalTransform(Vector3 translate) : m_Translation(translate) {};
-		OrthogonalTransform(Quaternion rotate, Vector3 translate) : m_Rotation(rotate), m_Translation(translate) {};
+		OrthogonalTransform(Quaternion rotate) : m_Rotation { rotate } {};
+		OrthogonalTransform(Vector3 translate) : m_Translation { translate } {};
+		OrthogonalTransform(Quaternion rotate, Vector3 translate) : m_Rotation { rotate }, m_Translation { translate } {};
 
 		OrthogonalTransform(Matrix3x3 mat) :m_Rotation { mat } {}
-		OrthogonalTransform(Matrix3x3 mat, Vector3 translate) :m_Rotation { mat }, m_Translation(translate) {}
+		OrthogonalTransform(Matrix3x3 mat, Vector3 translate) :m_Rotation { mat }, m_Translation { translate } {}
 
-		explicit OrthogonalTransform(const XMMATRIX& mat) { *this = OrthogonalTransform(Matrix3x3(mat), Vector3(mat.r[3])); }
+		explicit OrthogonalTransform(const XMMATRIX& mat) { *this = OrthogonalTransform { Matrix3x3 { mat }, Vector3 { mat.r[3] } }; }
 
 	public:
 
@@ -54,14 +54,17 @@ namespace Math {
 			return BoundingSphere(*this * sphere.Get_Center(), sphere.Get_Radius());
 		}*/
 
-		/*INLINE OrthogonalTransform operator* (const OrthogonalTransform& xform) const {
-			return OrthogonalTransform(m_Rotation * xform.m_Rotation, m_Rotation * xform.m_translation + m_translation);
+		OrthogonalTransform operator* (const OrthogonalTransform& xform) const { 
+			return OrthogonalTransform { 
+				this->m_Rotation * xform.m_Rotation, 
+				this->m_Rotation * xform.m_Translation + this->m_Translation 
+			}; 
 		}
 
-		INLINE OrthogonalTransform operator~ () const {
-			Quaternion invertedRotation = ~m_Rotation;
-			return OrthogonalTransform(invertedRotation, invertedRotation * -m_translation);
-		}*/
+		OrthogonalTransform operator~ () const {
+			Quaternion invertedRotation { ~m_Rotation };
+			return OrthogonalTransform { invertedRotation, invertedRotation * this->m_Translation };
+		}
 
 	public:
 		Quaternion Get_Rotation(void) const { return this->m_Rotation; }

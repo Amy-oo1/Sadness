@@ -300,6 +300,9 @@
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Bounding.ixx">
       <Filter>Math\Module</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Frustum.ixx">
+      <Filter>Math\Module</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Runtime\Core\Platform\Include\PlatformMacros.h">

@@ -183,6 +183,7 @@
     <ClCompile Include="..\..\Source\Runtime\Core\Logger\Module\Logger.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Bounding.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Common.ixx" />
+    <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Frustum.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Function.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Implementation.ixx" />
     <ClCompile Include="..\..\Source\Runtime\Core\Math\Module\Math-Matrix3x3.ixx" />

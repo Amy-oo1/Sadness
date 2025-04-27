@@ -29,10 +29,12 @@ namespace Math {
 
 	Matrix3x3::Matrix3x3(Quaternion q) { *this = Matrix3x3 { XMMatrixRotationQuaternion(q) }; }
 
-
     FORCINLINE OrientedBox operator* (const UniformTransform& xform, const OrientedBox& obb) { return AffineTransform { xform } *obb; }
 
 	FORCINLINE OrientedBox operator* (const UniformTransform& xform, const AxisAlignedBox& aabb) { return AffineTransform { xform } * OrientedBox { aabb }; }
 
+	FORCINLINE Matrix4x4::Matrix4x4(OrthogonalTransform xform) {
+		*this = Matrix4x4(Matrix3x3(xform.Get_Rotation()), xform.Get_Translation());
+	}
 
 }

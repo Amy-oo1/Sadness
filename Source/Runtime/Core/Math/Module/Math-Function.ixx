@@ -14,6 +14,7 @@ import :Vector3;
 import :Vector4;
 import :Matrix3x3;
 import :Matrix4x4;
+import :Quaternion;
 
 
 
@@ -23,7 +24,8 @@ namespace Math {
 
 #define CREATE_SIMD_FUNCTIONS(TYPE)\
 export FORCINLINE TYPE Sqrt( TYPE s) {return  static_cast<TYPE>(XMVectorSqrt(s));}\
-export FORCINLINE TYPE Recip( TYPE s){ return static_cast<TYPE>(XMVectorReciprocal(s));}\
+export FORCINLINE TYPE Recip( TYPE s) { return static_cast<TYPE>(XMVectorReciprocal(s));} \
+export FORCINLINE TYPE RecipSqrt( TYPE s){ return static_cast<TYPE>(XMVectorReciprocalSqrt(s));}\
 export FORCINLINE TYPE Floor( TYPE s ) { return static_cast<TYPE>(XMVectorFloor(s)); } \
 export FORCINLINE TYPE Ceiling( TYPE s ) { return static_cast<TYPE>(XMVectorCeiling(s)); } \
 export FORCINLINE TYPE Round( TYPE s ) { return static_cast<TYPE>(XMVectorRound(s)); } \
@@ -48,6 +50,7 @@ export FORCINLINE BoolVector operator<= ( TYPE lhs, TYPE rhs ) { return XMVector
 export FORCINLINE BoolVector operator>  ( TYPE lhs, TYPE rhs ) { return XMVectorGreater(lhs, rhs); } \
 export FORCINLINE BoolVector operator>= ( TYPE lhs, TYPE rhs ) { return XMVectorGreaterOrEqual(lhs, rhs); } \
 export FORCINLINE BoolVector operator== ( TYPE lhs, TYPE rhs ) { return XMVectorEqual(lhs, rhs); } \
+export FORCINLINE BoolVector operator!= ( TYPE lhs, TYPE rhs ) { return XMVectorNotEqual(lhs, rhs); } \
 export FORCINLINE TYPE Select( TYPE lhs, TYPE rhs, BoolVector mask ) { return TYPE(XMVectorSelect(lhs, rhs, mask)); }\
 
 CREATE_SIMD_FUNCTIONS(Scalar)
@@ -79,17 +82,17 @@ FORCINLINE float Max(float a, float b) { return a > b ? a : b; }
 FORCINLINE float Min(float a, float b) { return a < b ? a : b; }
 FORCINLINE float Clamp(float v, float a, float b) { return Min(Max(v, a), b); }
 
-	FORCINLINE Scalar Length(Vector3 v) { return Scalar(XMVector3Length(v)); }
-	FORCINLINE Scalar LengthSquare(Vector3 v) { return Scalar(XMVector3LengthSq(v)); }
-	FORCINLINE Scalar LengthRecip(Vector3 v) { return Scalar(XMVector3ReciprocalLength(v)); }
-	FORCINLINE Scalar Dot(Vector3 v1, Vector3 v2) { return Scalar(XMVector3Dot(v1, v2)); }
-	FORCINLINE Scalar Dot(Vector4 v1, Vector4 v2) { return Scalar(XMVector4Dot(v1, v2)); }
-	FORCINLINE Vector3 Cross(Vector3 v1, Vector3 v2) { return Vector3(XMVector3Cross(v1, v2)); }
-	FORCINLINE Vector3 Normalize(Vector3 v) { return Vector3(XMVector3Normalize(v)); }
-	FORCINLINE Vector4 Normalize(Vector4 v) { return Vector4(XMVector4Normalize(v)); }
+export FORCINLINE Scalar Length(Vector3 v) { return Scalar(XMVector3Length(v)); }
+export FORCINLINE Scalar LengthSquare(Vector3 v) { return Scalar(XMVector3LengthSq(v)); }
+export FORCINLINE Scalar LengthRecip(Vector3 v) { return Scalar(XMVector3ReciprocalLength(v)); }
+export FORCINLINE Scalar Dot(Vector3 v1, Vector3 v2) { return Scalar(XMVector3Dot(v1, v2)); }
+export FORCINLINE Scalar Dot(Vector4 v1, Vector4 v2) { return Scalar(XMVector4Dot(v1, v2)); }
+export FORCINLINE Vector3 Cross(Vector3 v1, Vector3 v2) { return Vector3(XMVector3Cross(v1, v2)); }
+export FORCINLINE Vector3 Normalize(Vector3 v) { return Vector3(XMVector3Normalize(v)); }
+export FORCINLINE Vector4 Normalize(Vector4 v) { return Vector4(XMVector4Normalize(v)); }
 
-	FORCINLINE Matrix3x3 Transpose(const Matrix3x3& mat) { return static_cast<Matrix3x3>(XMMatrixTranspose(mat)); }
-	FORCINLINE Matrix3x3 InverseTranspose(const Matrix3x3& mat){
+export FORCINLINE Matrix3x3 Transpose(const Matrix3x3& mat) { return static_cast<Matrix3x3>(XMMatrixTranspose(mat)); }
+export FORCINLINE Matrix3x3 InverseTranspose(const Matrix3x3& mat){
 	const Vector3 x { mat.Get_X() };
 	const Vector3 y { mat.Get_Y() };
 	const Vector3 z { mat.Get_Z() };
@@ -103,16 +106,19 @@ FORCINLINE float Clamp(float v, float a, float b) { return Min(Max(v, a), b); }
 	return Matrix3x3 { inv0, inv1, inv2 } * rDet;
 }
 
-	FORCINLINE Matrix4x4 Transpose(Matrix4x4 mat) { return Matrix4x4(XMMatrixTranspose(mat)); }
-	FORCINLINE Matrix4x4 Invert(Matrix4x4 mat) { return Matrix4x4 { XMMatrixInverse(nullptr, mat) }; }
+export FORCINLINE Matrix4x4 Transpose(Matrix4x4 mat) { return Matrix4x4(XMMatrixTranspose(mat)); }
+export FORCINLINE Matrix4x4 Invert(Matrix4x4 mat) { return Matrix4x4 { XMMatrixInverse(nullptr, mat) }; }
 
-	FORCINLINE Matrix4x4 OrthoInvert(Matrix4x4 xform) {
+export FORCINLINE Matrix4x4 OrthoInvert(Matrix4x4 xform) {
 		auto  basis { Transpose(xform) };
 		Vector3 translate { basis * -Vector3(xform.Get_W()) };
 
 		return Matrix4x4 { basis, translate };
 	}
 
+export FORCINLINE Quaternion Normalize(Quaternion q) { return Quaternion(XMQuaternionNormalize(q)); }
+export FORCINLINE Quaternion Slerp(Quaternion a, Quaternion b, float t) { return Normalize(Quaternion(XMQuaternionSlerp(a, b, t))); }
+export FORCINLINE Quaternion Lerp(Quaternion a, Quaternion b, float t) { return Normalize(Quaternion(XMVectorLerp(a, b, t))); }
 
 }
 

@@ -138,6 +138,9 @@
     <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\Camera-Base.ixx">
       <Filter>Camera\Module</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Runtime\Engine\Camera\Module\Camera-Common.ixx">
+      <Filter>Camera\Module</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Runtime\Engine\Configer\Include\ConfigMacros.h">

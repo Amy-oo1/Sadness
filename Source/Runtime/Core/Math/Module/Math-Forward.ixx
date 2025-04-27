@@ -14,4 +14,9 @@ namespace Math {
 	Matrix4x4 Invert(Matrix4x4 mat);
 	Matrix4x4 OrthoInvert(Matrix4x4 xform);
 
+	class Frustum;
+
+	class OrthogonalTransform;
+	class BoundingSphere;
+
 }

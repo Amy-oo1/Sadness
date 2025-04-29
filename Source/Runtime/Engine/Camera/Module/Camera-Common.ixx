@@ -11,6 +11,25 @@ import :Base;
 
 using namespace Math;
 
+export template<typename Derived>
+void CameraBase<Derived>::UpDate(void) {
+	this->m_PrevViewProjectionMatrix = this->m_ProjectionMatrix;
+
+	this->m_ViewMatrix = ~this->m_CameraToWorld;
+	this->m_ViewProjectionMatrix = this->m_ProjectionMatrix * this->m_ViewMatrix;
+	this->m_ReprojectionMatrix = this->m_PrevViewProjectionMatrix * (Math::Invert(this->m_ViewProjectionMatrix));
+
+	this->m_FrustumVS = Math::Frustum { this->m_ProjectionMatrix };
+	this->m_FrustumWS = this->m_CameraToWorld * this->m_FrustumVS;
+
+	if constexpr (requires(Derived & d) { d.Update(); })
+		this->Get_Derived()->Update();
+	else
+		static_assert(false, " CameraBase<Derived>::Update() not implemented!"); //TODO : remove static_assert
+
+}
+
+
 export class Camera final : public CameraBase<Camera> {
 	friend class CameraBase<Camera>;
 public:
@@ -27,6 +46,8 @@ public:
 	}
 
 public:
+	void Update(void) {}
+
 	float GetFOV() const { return this->m_VerticalFOV; }
 	float GetNearClip() const { return this->m_NearClip; }
 	float GetFarClip() const { return this->m_FarClip; }

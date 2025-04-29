@@ -20,4 +20,9 @@ namespace Math {
 	export class AffineTransform;
 	export class BoundingSphere;
 
+	class Frustum;
+
+	class OrthogonalTransform;
+	class BoundingSphere;
+
 }
